@@ -846,3 +846,15 @@ html .slide[data-slide].slide .slide-header h1 {
 .slide figcaption {
   line-height: 1.5 !important;
 }
+/* Presentation-safe mode for slide 9 */
+.unique-maximum-slide .unique-profile-panel {
+  overflow: hidden;
+}
+
+.unique-maximum-slide #ellipseMcpCanvas,
+.unique-maximum-slide #parabolaMcpCanvas {
+  height: clamp(260px, 42vh, 420px) !important;
+  min-height: 0 !important;
+  pointer-events: none !important;
+  cursor: default !important;
+}
