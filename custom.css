@@ -1,0 +1,848 @@
+/* Loaded after styles.css: the authoritative final layout override. */
+/* Final aggressive readability and spacing pass                              */
+/* Large audience-facing type, compact page margins, 1.5 prose line spacing.  */
+/* ========================================================================== */
+
+:root {
+  --body-large: clamp(28px, 2.08vw, 34px);
+  --body-small: clamp(23px, 1.68vw, 28px);
+  --math-medium: clamp(31px, 2.28vw, 38px);
+}
+
+.slide .slide-frame {
+  padding: clamp(16px, 1.45vw, 23px) clamp(34px, 2.9vw, 47px) clamp(34px, 4.15vh, 43px);
+  gap: clamp(5px, 0.72vh, 8px);
+}
+
+.slide .slide-header h1 {
+  font-size: clamp(40px, 3.08vw, 50px) !important;
+  line-height: 1.12 !important;
+}
+
+.slide .setup {
+  margin-top: clamp(6px, 0.75vh, 9px);
+  font-size: var(--body-large) !important;
+  line-height: 1.5 !important;
+}
+
+.slide p,
+.slide li,
+.slide label,
+.slide output,
+.slide button,
+.slide figcaption {
+  line-height: 1.5 !important;
+}
+
+/* Authoritative frame-title size: this must remain the final rule. */
+html .slide[data-slide].slide .slide-header h1 {
+  font-size: clamp(42px, 3.125vw, 50px) !important;
+  line-height: 1.08 !important;
+}
+
+/* One title scale for every frame. */
+.slide .slide-header h1 {
+  font-size: clamp(42px, 3.125vw, 50px) !important;
+  line-height: 1.08 !important;
+}
+
+.definition-label,
+.visual-heading h2,
+.family-visual-heading h2,
+.unique-profile-heading h2,
+.dominant-panel-heading h2,
+.revolution-visual-heading .definition-label,
+.revolution-setting-definition > .definition-label {
+  font-size: clamp(27px, 1.98vw, 32px) !important;
+  line-height: 1.25 !important;
+}
+
+.slide[data-slide="1"] .slide-frame,
+.levy-slide .slide-frame,
+.main-theorem-slide .slide-frame {
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.slide[data-slide="1"] .slide-header .setup {
+  margin-top: clamp(9px, 1.1vh, 13px);
+  font-size: clamp(29px, 2.16vw, 35px) !important;
+}
+
+.slide[data-slide="1"] .slide-frame .definition-block {
+  min-height: 0;
+  height: 100%;
+  padding: 0;
+  gap: clamp(12px, 1.55vh, 18px);
+  align-content: stretch;
+}
+
+.slide[data-slide="1"] .neighborhood-definition,
+.slide[data-slide="1"] .concentration-definition {
+  padding: clamp(20px, 2.45vh, 28px) clamp(28px, 2.5vw, 40px);
+}
+
+.slide[data-slide="1"] .definition-block .definition-label {
+  margin-bottom: clamp(10px, 1.25vh, 14px);
+  font-size: clamp(29px, 2.15vw, 35px) !important;
+}
+
+.slide[data-slide="1"] .neighborhood-math {
+  font-size: clamp(42px, 3.12vw, 51px);
+}
+
+.slide[data-slide="1"] .concentration-math {
+  font-size: clamp(37px, 2.72vw, 44px);
+}
+
+.sphere-setting-math,
+.family-setting-math {
+  font-size: clamp(31px, 2.28vw, 38px) !important;
+}
+
+.sphere-demo,
+.family-demo,
+.unique-maximum-content,
+.dominant-maxima-content,
+.revolution-setting-content {
+  padding-top: clamp(6px, 0.75vh, 9px);
+}
+
+.sphere-slide .visual-heading h2,
+.levy-example-slide .family-visual-heading h2,
+.product-example-slide .family-visual-heading h2,
+.unique-maximum-slide .unique-profile-heading h2,
+.dominant-maxima-slide .dominant-panel-heading h2 {
+  font-size: clamp(28px, 2.05vw, 34px) !important;
+}
+
+.visual-heading p,
+.family-visual-heading p,
+.family-limit-note,
+.formula-justification {
+  font-size: clamp(24px, 1.78vw, 29px) !important;
+}
+
+.region-legend,
+.family-legend,
+.unique-maximum-legend,
+.dominant-maxima-controls .unique-maximum-legend {
+  font-size: clamp(25px, 1.85vw, 30px) !important;
+}
+
+.radius-readout label,
+.family-control-readout label,
+.unique-control-label,
+.dominant-maxima-slide .unique-control-label {
+  font-size: clamp(17px, 1.2vw, 20px) !important;
+  line-height: 1.1 !important;
+}
+
+.radius-readout output,
+.family-control-readout output,
+.unique-control-label output,
+.product-radius-readout output,
+.dominant-maxima-slide .unique-control-label output {
+  font-size: clamp(27px, 2vw, 33px) !important;
+  line-height: 1.1 !important;
+}
+
+.slider-ticks,
+.family-slider-ticks {
+  font-size: clamp(19px, 1.38vw, 23px) !important;
+}
+
+.levy-example-slide .family-dimension-badge,
+.levy-example-slide .family-alpha-badge,
+.product-example-slide .family-dimension-badge,
+.product-example-slide .product-mass-badge {
+  font-size: clamp(32px, 2.4vw, 39px) !important;
+}
+
+.alpha-readout::before {
+  content: "αₓ = ";
+}
+
+.family-alpha-badge::before {
+  content: "αₓₙ = ";
+}
+
+.product-mass-badge::before {
+  content: none !important;
+}
+
+.product-mass-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2em;
+}
+
+.product-mass-badge math {
+  color: var(--muted);
+  font-size: 0.66em;
+  font-weight: 600;
+}
+
+.product-mass-badge output {
+  color: #bd3c35;
+}
+
+.product-example-slide .product-mass-badge {
+  font-size: clamp(27px, 1.92vw, 31px) !important;
+}
+
+.levy-example-slide .family-setting-math,
+.product-example-slide .family-setting-math {
+  display: inline-block !important;
+  width: max-content;
+  max-width: 100%;
+  align-self: flex-start;
+  text-align: left;
+}
+
+.levy-example-slide .family-cloud-canvas,
+.product-example-slide .family-cloud-canvas,
+.levy-example-slide .family-legend,
+.product-example-slide .family-legend,
+.levy-example-slide .family-curve-canvas,
+.product-example-slide .family-curve-canvas,
+.levy-example-slide .family-limit-note,
+.product-example-slide .family-limit-note {
+  transform: none !important;
+}
+
+.levy-example-slide .family-demo > .family-visual-side:first-child,
+.product-example-slide .family-demo > .family-visual-side:first-child {
+  align-self: stretch;
+  position: relative;
+}
+
+.levy-example-slide .family-projection-caption,
+.product-example-slide .family-projection-caption {
+  position: absolute;
+  right: 0;
+  bottom: clamp(30px, 3.78vh, 34px);
+  left: 0;
+  z-index: 2;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(16px, 1.12vw, 18px) !important;
+  font-weight: 500;
+  line-height: 1.15 !important;
+  text-align: center;
+  pointer-events: none;
+}
+
+.levy-example-slide .family-cloud-canvas,
+.product-example-slide .family-cloud-canvas {
+  transform: translateY(-8px) !important;
+}
+
+.levy-example-slide .family-projection-caption math,
+.product-example-slide .family-projection-caption math {
+  font-size: 1em;
+}
+
+.sphere-slide .sphere-demo > .sphere-side,
+.sphere-slide .sphere-demo > .curve-side {
+  align-self: stretch;
+}
+
+.levy-example-slide .family-demo > .family-visual-side:first-child .family-legend,
+.product-example-slide .family-demo > .family-visual-side:first-child .family-legend {
+  padding-top: 2px;
+}
+
+.levy-example-slide .family-cloud-canvas,
+.product-example-slide .family-cloud-canvas {
+  height: clamp(405px, 50vh, 450px) !important;
+  cursor: grab;
+  touch-action: none;
+}
+
+.levy-example-slide .family-cloud-canvas:active,
+.product-example-slide .family-cloud-canvas:active {
+  cursor: grabbing;
+}
+
+.levy-example-slide .family-slider,
+.product-example-slide .family-slider {
+  height: 16px !important;
+}
+
+.levy-example-slide .family-slider-ticks,
+.product-example-slide .family-slider-ticks {
+  margin-top: -4px !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+}
+
+.radius-control,
+.family-controls,
+.unique-maximum-controls {
+  padding-top: clamp(2px, 0.3vh, 4px);
+}
+
+.radius-readout,
+.family-control-readout {
+  gap: 0 !important;
+}
+
+.slider-area,
+.family-slider-area {
+  padding-top: 2px !important;
+}
+
+#radiusSlider,
+.family-slider {
+  height: 20px !important;
+}
+
+.slider-ticks,
+.family-slider-ticks {
+  margin-top: -3px !important;
+  font-size: clamp(14px, 1vw, 17px) !important;
+}
+
+.unique-control-label {
+  margin-bottom: 1px !important;
+}
+
+.unique-maximum-controls .unique-maximum-legend,
+.dominant-maxima-controls .unique-maximum-legend {
+  gap: 2px !important;
+  font-size: clamp(20px, 1.45vw, 23px) !important;
+  line-height: 1.1 !important;
+}
+
+.unique-maximum-controls .unique-swatch {
+  width: 15px;
+  height: 15px;
+}
+
+.levy-slide .levy-header .setup {
+  font-size: clamp(31px, 2.3vw, 38px) !important;
+}
+
+.levy-definition-block {
+  align-self: stretch;
+  display: grid;
+  align-content: center;
+  min-height: 0;
+  padding: clamp(28px, 4vh, 44px) clamp(32px, 3.4vw, 55px);
+}
+
+.slide[data-slide="3"] .levy-math {
+  width: 100%;
+  justify-self: start;
+  text-align: left;
+}
+
+.slide[data-slide="3"] .levy-math mtd {
+  text-align: left !important;
+}
+
+.levy-definition-block .levy-label {
+  margin-bottom: clamp(15px, 1.9vh, 22px);
+  font-size: clamp(29px, 2.12vw, 35px) !important;
+}
+
+.levy-math {
+  font-size: clamp(35px, 2.65vw, 43px) !important;
+  line-height: 1.5 !important;
+}
+
+.lipschitz-slide {
+  --lipschitz-body-size: clamp(27px, 1.92vw, 31px);
+  --lipschitz-math-size: clamp(27px, 1.92vw, 31px);
+  --lipschitz-bottom-size: clamp(27px, 1.92vw, 31px);
+}
+
+.lipschitz-equivalence .definition-label,
+.ledoux-result .definition-label {
+  font-size: clamp(28px, 2.05vw, 34px) !important;
+}
+
+.lipschitz-equivalence,
+.ledoux-result {
+  padding: clamp(7px, 0.88vh, 10px) clamp(18px, 1.65vw, 27px);
+}
+
+.revolution-setting-label {
+  font-size: clamp(25px, 1.85vw, 30px) !important;
+}
+
+.revolution-profile-math,
+.revolution-space-math,
+.revolution-measure-math {
+  font-size: clamp(28px, 2.08vw, 34px) !important;
+}
+
+.revolution-triple p,
+.revolution-measure-note,
+.revolution-setting-visual figcaption {
+  font-size: clamp(22px, 1.62vw, 27px) !important;
+}
+
+.main-theorem-slide .slide-header h1 {
+  font-size: clamp(40px, 3.05vw, 49px) !important;
+}
+
+.main-theorem-content {
+  height: 100%;
+  gap: clamp(5px, 0.62vh, 7px);
+}
+
+.main-theorem-slide .theorem-assumptions .definition-label,
+.main-theorem-slide .theorem-unique .definition-label,
+.main-theorem-slide .theorem-bound-heading .definition-label {
+  font-size: clamp(26px, 1.92vw, 31px) !important;
+}
+
+.main-theorem-slide .theorem-maxima-math,
+.main-theorem-slide .theorem-local-math,
+.main-theorem-slide .theorem-unique-math {
+  font-size: clamp(26px, 1.95vw, 32px) !important;
+}
+
+.main-theorem-slide .theorem-copy,
+.main-theorem-slide .theorem-order-note,
+.main-theorem-slide .theorem-bound-heading > p:last-child,
+.main-theorem-slide .theorem-limit {
+  font-size: clamp(24px, 1.78vw, 29px) !important;
+}
+
+.main-theorem-slide .theorem-bound-math {
+  font-size: clamp(26px, 1.95vw, 32px) !important;
+}
+
+.theorem-assumptions,
+.theorem-unique,
+.theorem-bound {
+  padding: clamp(6px, 0.72vh, 8px) clamp(15px, 1.4vw, 23px);
+}
+
+.unique-profile-heading > div > math,
+.dominant-maxima-header .dominant-profile-equation {
+  font-size: clamp(28px, 2.08vw, 34px) !important;
+}
+
+.dominant-maxima-header .setup {
+  font-size: clamp(26px, 1.95vw, 32px) !important;
+}
+
+.unique-domain-line,
+.unique-outside-readout,
+.dominant-share-readout,
+.dominant-order-ratio {
+  font-size: clamp(22px, 1.62vw, 27px) !important;
+}
+
+.dominant-set-definition,
+.halfset-choice button {
+  font-size: clamp(23px, 1.72vw, 28px) !important;
+}
+
+.revolution-setting-content,
+.unique-maximum-header,
+.dominant-maxima-controls {
+  overflow: visible;
+}
+
+.slide[data-slide="7"] .revolution-setting-question {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.slide[data-slide="6"] .extension-question .meaning-label,
+.slide[data-slide="7"] .revolution-setting-question .meaning-label {
+  font-size: clamp(18px, 1.32vw, 21px) !important;
+  line-height: 1.2 !important;
+}
+
+.slide[data-slide="6"] .extension-question > p:last-child,
+.slide[data-slide="7"] .revolution-setting-question > p:last-child {
+  font-size: clamp(24px, 1.78vw, 29px) !important;
+  line-height: 1.5 !important;
+}
+
+.slide[data-slide="10"] .dominant-single-panel,
+.slide[data-slide="11"] .dominant-single-panel,
+.slide[data-slide="12"] .dominant-single-panel {
+  align-self: stretch;
+}
+
+.slide[data-slide="11"] .dominant-profile-equation {
+  font-size: clamp(24px, 1.68vw, 27px) !important;
+}
+
+.slide[data-slide="11"] .dominant-maxima-header .setup {
+  font-size: clamp(23px, 1.6vw, 26px) !important;
+  line-height: 1.5 !important;
+}
+
+.slide[data-slide="11"] .dominant-maxima-header .setup mtd {
+  text-align: left !important;
+}
+
+@media (max-height: 690px) {
+  .slide .slide-frame {
+    padding-top: 10px;
+    padding-bottom: 31px;
+    gap: 3px;
+  }
+
+  .slide p,
+  .slide li,
+  .slide label,
+  .slide output,
+  .slide button,
+  .slide figcaption {
+    line-height: 1.5 !important;
+  }
+
+  .slide[data-slide="1"] .neighborhood-definition,
+  .slide[data-slide="1"] .concentration-definition,
+  .levy-definition-block,
+  .lipschitz-equivalence,
+  .ledoux-result,
+  .theorem-assumptions,
+  .theorem-unique,
+  .theorem-bound {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+}
+
+/* Body copy uses the requested 1.5 line spacing throughout the deck.
+   Titles, display equations, controls, and the Beamer footline keep their
+   compact native metrics. */
+.slide .setup,
+.slide[data-slide="1"] .definition-label,
+.slide .visual-heading p,
+.slide .family-limit-note,
+.slide .formula-justification,
+.slide .equivalence-intro,
+.slide .consequence-label,
+.slide .ledoux-assumption,
+.slide .ledoux-source,
+.slide .extension-question > p:last-child,
+.slide .revolution-triple p,
+.slide .revolution-measure-note,
+.slide .revolution-setting-question > p:last-child,
+.slide .theorem-copy,
+.slide .theorem-bound-heading > p:last-child,
+.slide .unique-domain-line,
+.slide figcaption {
+  line-height: 1.5 !important;
+}
+
+/* ========================================================================== */
+/* Text-only frames: Beamer Boadilla fidelity                                 */
+/* Source: 11pt, 16:9, Boadilla, default colors, professional fonts.          */
+/* ========================================================================== */
+
+.slide[data-slide="1"],
+.slide[data-slide="3"],
+.slide[data-slide="6"],
+.slide[data-slide="8"] {
+  --beamer-structure: #3333b3;
+  --beamer-foot-dark: #d9d9ee;
+  --beamer-foot-light: #eeeef8;
+  --beamer-block-title: #d9d9ee;
+  --beamer-block-body: #f5f5fa;
+  background: #fff;
+  color: #171717;
+  font-family: "Latin Modern Sans", "CMU Sans Serif", "Computer Modern Sans Serif", Arial, sans-serif;
+}
+
+.slide[data-slide="1"] .slide-frame,
+.slide[data-slide="3"] .slide-frame,
+.slide[data-slide="6"] .slide-frame,
+.slide[data-slide="8"] .slide-frame {
+  padding: clamp(19px, 1.65vw, 27px) clamp(42px, 3.5vw, 57px) clamp(35px, 4.3vh, 44px);
+  gap: clamp(9px, 1.15vh, 13px);
+}
+
+.slide[data-slide="1"] .slide-header h1,
+.slide[data-slide="3"] .slide-header h1,
+.slide[data-slide="6"] .slide-header h1,
+.slide[data-slide="8"] .slide-header h1 {
+  color: var(--beamer-structure);
+  font-family: "Latin Modern Sans", "CMU Sans Serif", "Computer Modern Sans Serif", Arial, sans-serif;
+  font-size: clamp(36px, 2.72vw, 44px) !important;
+  font-weight: 600;
+  line-height: 1.12 !important;
+  letter-spacing: 0;
+}
+
+.slide[data-slide="1"] .setup,
+.slide[data-slide="3"] .setup,
+.slide[data-slide="6"] .setup,
+.slide[data-slide="8"] .setup {
+  color: #171717;
+  font-size: clamp(28px, 2.08vw, 34px) !important;
+  line-height: 1.5 !important;
+}
+
+.slide[data-slide="6"] .setup {
+  font-size: var(--lipschitz-body-size) !important;
+  line-height: 1.24 !important;
+  margin-top: 2px;
+}
+
+.slide[data-slide="6"] .median-definition {
+  display: block;
+  margin-top: 2px;
+  text-align: left;
+}
+
+.slide[data-slide="1"] .neighborhood-definition,
+.slide[data-slide="1"] .concentration-definition,
+.slide[data-slide="3"] .levy-definition-block,
+.slide[data-slide="6"] .lipschitz-equivalence,
+.slide[data-slide="6"] .ledoux-result,
+.slide[data-slide="6"] .sphere-conclusion,
+.slide[data-slide="8"] .theorem-assumptions,
+.slide[data-slide="8"] .theorem-unique,
+.slide[data-slide="8"] .theorem-bound {
+  overflow: hidden;
+  border: 1px solid #d2d2e6;
+  border-radius: 5px;
+  background: var(--beamer-block-body);
+  box-shadow: none;
+}
+
+.slide[data-slide="1"] .neighborhood-definition,
+.slide[data-slide="1"] .concentration-definition {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  align-content: stretch;
+  padding: 0 clamp(24px, 2.15vw, 35px) clamp(18px, 2.2vh, 25px);
+}
+
+.slide[data-slide="1"] .neighborhood-definition > math,
+.slide[data-slide="1"] .concentration-definition > math {
+  align-self: center;
+}
+
+.slide[data-slide="1"] .neighborhood-definition .definition-label,
+.slide[data-slide="1"] .concentration-definition .definition-label {
+  margin: 0 clamp(-35px, -2.15vw, -24px) clamp(14px, 1.75vh, 20px);
+  padding: clamp(7px, 0.85vh, 10px) clamp(24px, 2.15vw, 35px);
+  background: var(--beamer-block-title);
+  color: #1f1f70;
+  font-size: clamp(27px, 2vw, 33px) !important;
+  font-weight: 600;
+  line-height: 1.5 !important;
+}
+
+.slide[data-slide="3"] .levy-definition-block {
+  grid-template-rows: minmax(0, 1fr);
+  align-content: stretch;
+  padding: clamp(28px, 3.5vh, 38px) clamp(32px, 3vw, 49px);
+}
+
+.slide[data-slide="3"] .levy-definition-block .levy-label {
+  margin: 0 clamp(-49px, -3vw, -32px) clamp(20px, 2.5vh, 27px);
+  padding: clamp(7px, 0.9vh, 11px) clamp(32px, 3vw, 49px);
+  background: var(--beamer-block-title);
+  color: #1f1f70;
+  font-size: clamp(28px, 2.08vw, 34px) !important;
+  line-height: 1.5 !important;
+  text-align: left;
+  text-transform: none;
+}
+
+.slide[data-slide="3"] .levy-math {
+  align-self: center;
+  color: #171717;
+  font-size: clamp(34px, 2.58vw, 42px) !important;
+  line-height: 1.5 !important;
+}
+
+.slide[data-slide="3"] .levy-equivalence {
+  align-self: center;
+  color: #171717;
+  text-align: left;
+}
+
+.slide[data-slide="3"] .levy-equivalence-intro {
+  margin: 0 0 clamp(12px, 1.45vh, 17px);
+  font-size: clamp(30px, 2.22vw, 36px) !important;
+  font-weight: 600;
+  line-height: 1.5 !important;
+}
+
+.slide[data-slide="3"] .levy-equivalence-list {
+  display: grid;
+  gap: clamp(7px, 0.9vh, 11px);
+  margin: 0;
+  padding-left: 1.42em;
+  font-size: clamp(27px, 2vw, 33px);
+  line-height: 1.5;
+}
+
+.slide[data-slide="3"] .levy-equivalence-list li {
+  padding-left: 0.18em;
+  line-height: 1.5 !important;
+}
+
+.slide[data-slide="3"] .levy-equivalence-list li::marker {
+  color: var(--beamer-structure);
+  font-weight: 700;
+}
+
+.slide[data-slide="3"] .levy-equivalence-list math {
+  font-size: 1em;
+}
+
+/* Slide 2: enlarge both visuals by approximately 1.5 while leaving its
+   headings, formula, legend, and controls in their established positions. */
+.sphere-slide .sphere-canvas,
+.sphere-slide .curve-canvas {
+  align-self: center;
+  height: clamp(450px, 56.67vh, 510px) !important;
+}
+
+.sphere-slide .exact-formula {
+  transform: translateY(-22px) !important;
+}
+
+/* The product example has one extra line of copy; reclaim eight pixels from
+   its canvas box while keeping the rendered cylinder at the 1.5× scale. */
+.product-example-slide .family-cloud-canvas {
+  height: clamp(397px, 49.11vh, 442px) !important;
+}
+
+.slide[data-slide="6"] .lipschitz-content {
+  height: 100%;
+  grid-template-rows: minmax(0, 1.08fr) minmax(0, 0.82fr) auto;
+  gap: 4px;
+}
+
+.slide[data-slide="6"] .lipschitz-equivalence,
+.slide[data-slide="6"] .ledoux-result {
+  align-content: center;
+  padding: clamp(10px, 1.25vh, 14px) clamp(22px, 2vw, 32px);
+}
+
+.slide[data-slide="6"] .ledoux-source {
+  width: 100%;
+  margin-top: 4px;
+  justify-self: end;
+  text-align: right;
+}
+
+.slide[data-slide="6"] .lipschitz-equivalence .definition-label,
+.slide[data-slide="6"] .ledoux-result .definition-label {
+  margin: clamp(-14px, -1.25vh, -10px) clamp(-32px, -2vw, -22px) clamp(9px, 1.1vh, 12px);
+  padding: clamp(6px, 0.75vh, 9px) clamp(22px, 2vw, 32px);
+  background: var(--beamer-block-title);
+  color: #1f1f70;
+  font-size: clamp(27px, 2vw, 33px) !important;
+  line-height: 1.5 !important;
+}
+
+.slide[data-slide="6"] .sphere-conclusion {
+  padding: clamp(9px, 1.1vh, 13px) clamp(20px, 1.8vw, 29px);
+  color: #171717;
+  font-size: clamp(27px, 2vw, 33px);
+}
+
+.slide[data-slide="6"] .extension-question {
+  padding: clamp(5px, 0.62vh, 8px) clamp(16px, 1.45vw, 23px);
+}
+
+.slide[data-slide="6"] .extension-question > p:last-child {
+  font-size: clamp(24px, 1.78vw, 29px) !important;
+  line-height: 1.5 !important;
+}
+
+.slide[data-slide="8"] .main-theorem-content {
+  height: 100%;
+  grid-template-rows: minmax(0, 1.08fr) minmax(0, 0.78fr) minmax(0, 1.32fr);
+  gap: clamp(7px, 0.9vh, 10px);
+}
+
+.slide[data-slide="8"] .theorem-assumptions,
+.slide[data-slide="8"] .theorem-unique,
+.slide[data-slide="8"] .theorem-bound {
+  padding: 0 clamp(18px, 1.7vw, 28px) clamp(8px, 1vh, 12px);
+}
+
+.slide[data-slide="8"] .theorem-assumptions .definition-label,
+.slide[data-slide="8"] .theorem-unique .definition-label,
+.slide[data-slide="8"] .theorem-bound-heading .definition-label {
+  margin: 0 clamp(-28px, -1.7vw, -18px) clamp(5px, 0.65vh, 8px);
+  padding: clamp(5px, 0.62vh, 8px) clamp(18px, 1.7vw, 28px);
+  background: var(--beamer-block-title);
+  color: #1f1f70;
+  font-size: clamp(24px, 1.78vw, 29px) !important;
+  line-height: 1.5 !important;
+}
+
+.slide[data-slide="8"] .theorem-bound-heading {
+  display: block;
+  width: 100%;
+  gap: 2px;
+}
+
+.slide[data-slide="8"] .theorem-bound-heading .definition-label {
+  display: block;
+  width: auto;
+}
+
+.slide[data-slide="8"] .theorem-bound-heading > p:last-child,
+.slide[data-slide="8"] .theorem-copy,
+.slide[data-slide="8"] .theorem-limit {
+  font-size: clamp(23px, 1.7vw, 28px) !important;
+  line-height: 1.5 !important;
+}
+
+.slide[data-slide="8"] .theorem-maxima-math,
+.slide[data-slide="8"] .theorem-local-math,
+.slide[data-slide="8"] .theorem-unique-math,
+.slide[data-slide="8"] .theorem-bound-math {
+  color: #171717;
+  font-size: clamp(25px, 1.88vw, 31px) !important;
+}
+
+.slide[data-slide="1"] .beamer-footline-author,
+.slide[data-slide="1"] .beamer-footline-date,
+.slide[data-slide="3"] .beamer-footline-author,
+.slide[data-slide="3"] .beamer-footline-date,
+.slide[data-slide="6"] .beamer-footline-author,
+.slide[data-slide="6"] .beamer-footline-date,
+.slide[data-slide="8"] .beamer-footline-author,
+.slide[data-slide="8"] .beamer-footline-date {
+  background: var(--beamer-foot-dark);
+}
+
+.slide[data-slide="1"] .beamer-footline-title,
+.slide[data-slide="3"] .beamer-footline-title,
+.slide[data-slide="6"] .beamer-footline-title,
+.slide[data-slide="8"] .beamer-footline-title {
+  background: var(--beamer-foot-light);
+}
+
+/* Final body-copy rhythm: keep this last so page-specific typography cannot
+   silently override the requested 1.5 line spacing. */
+.slide .setup,
+.slide[data-slide="1"] .definition-label,
+.slide .visual-heading p,
+.slide .family-limit-note,
+.slide .formula-justification,
+.slide .equivalence-intro,
+.slide .consequence-label,
+.slide .ledoux-assumption,
+.slide .ledoux-source,
+.slide .extension-question > p:last-child,
+.slide .revolution-triple p,
+.slide .revolution-measure-note,
+.slide .revolution-setting-question > p:last-child,
+.slide .theorem-copy,
+.slide .theorem-bound-heading > p:last-child,
+.slide .unique-domain-line,
+.slide figcaption {
+  line-height: 1.5 !important;
+}

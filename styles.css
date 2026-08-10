@@ -1,0 +1,3707 @@
+:root {
+  --paper: #f5f2eb;
+  --ink: #102b3a;
+  --muted: #60717a;
+  --blue: #256a8a;
+  --blue-soft: #dbe8ec;
+  --gold: #d49a38;
+  --line: #b9c5c7;
+  --math: "Cambria Math", "STIX Two Math", "Latin Modern Math", serif;
+  --sans: "Aptos", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #dfe4e4;
+  color: var(--ink);
+  font-family: var(--sans);
+}
+
+body {
+  display: grid;
+  place-items: center;
+}
+
+.deck,
+.slide {
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  display: none;
+  background: var(--paper);
+}
+
+.slide.is-active {
+  display: block;
+}
+
+.slide-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: clamp(34px, 5.1vw, 82px) clamp(44px, 7vw, 112px) clamp(34px, 4.6vw, 74px);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: clamp(20px, 2.5vh, 34px);
+}
+
+.slide-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: clamp(8px, 0.8vw, 13px);
+  background: var(--blue);
+}
+
+.slide-header {
+  max-width: 1180px;
+}
+
+.eyebrow {
+  margin: 0 0 clamp(10px, 1.2vh, 17px);
+  color: var(--blue);
+  font-size: clamp(14px, 1.22vw, 20px);
+  font-weight: 750;
+  letter-spacing: 0.19em;
+}
+
+.eyebrow span {
+  color: var(--gold);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(46px, 5.35vw, 86px);
+  font-weight: 650;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.setup {
+  margin: clamp(16px, 2.3vh, 28px) 0 0;
+  color: var(--muted);
+  font-size: clamp(22px, 1.85vw, 30px);
+  line-height: 1.38;
+}
+
+.setup math {
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: 1.08em;
+}
+
+.definition-block {
+  align-self: center;
+  display: grid;
+  grid-template-columns: minmax(360px, 0.9fr) 1px minmax(0, 1.55fr);
+  align-items: center;
+  gap: clamp(24px, 3vw, 48px);
+  min-height: 0;
+}
+
+.definition-label {
+  margin: 0 0 clamp(16px, 2vh, 26px);
+  color: var(--blue);
+  font-size: clamp(18px, 1.42vw, 24px);
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+
+.display-math {
+  width: 100%;
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--math);
+  line-height: 1;
+}
+
+.neighborhood-math {
+  font-size: clamp(33px, 2.7vw, 44px);
+}
+
+.concentration-math {
+  font-size: clamp(34px, 2.85vw, 46px);
+}
+
+.rule {
+  width: 1px;
+  height: min(30vh, 250px);
+  background: var(--line);
+}
+
+.meaning {
+  position: relative;
+  padding-top: clamp(17px, 2vh, 25px);
+  border-top: 2px solid var(--ink);
+}
+
+.meaning::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: clamp(88px, 8vw, 130px);
+  height: 2px;
+  background: var(--gold);
+}
+
+.meaning-label {
+  margin: 0 0 clamp(9px, 1vh, 13px);
+  color: var(--blue);
+  font-size: clamp(13px, 1.05vw, 17px);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.meaning-text {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.45em;
+  color: var(--muted);
+  font-size: clamp(20px, 1.65vw, 27px);
+  line-height: 1.35;
+}
+
+.meaning-text strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.flow-arrow {
+  color: var(--gold);
+  font-weight: 800;
+}
+
+.slide-count {
+  position: absolute;
+  right: clamp(32px, 3vw, 48px);
+  bottom: clamp(24px, 2.6vh, 38px);
+  color: var(--blue);
+  font-size: clamp(13px, 1vw, 16px);
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.slide-count span {
+  color: var(--gold);
+  padding: 0 0.2em;
+}
+
+.deck-arrow {
+  position: fixed;
+  z-index: 20;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: clamp(38px, 3.2vw, 50px);
+  height: clamp(38px, 3.2vw, 50px);
+  padding: 0 0 3px;
+  transform: translateY(-50%);
+  border: 1px solid rgba(16, 43, 58, 0.2);
+  border-radius: 50%;
+  background: rgba(245, 242, 235, 0.9);
+  color: var(--blue);
+  font-family: var(--sans);
+  font-size: clamp(22px, 1.8vw, 30px);
+  font-weight: 650;
+  line-height: 1;
+  box-shadow: 0 4px 14px rgba(16, 43, 58, 0.12);
+  cursor: pointer;
+  transition: transform 120ms ease, background 120ms ease, opacity 120ms ease;
+}
+
+.deck-arrow:hover:not(:disabled) {
+  background: #ffffff;
+  transform: translateY(-50%) scale(1.06);
+}
+
+.deck-arrow:focus-visible {
+  outline: 3px solid rgba(37, 106, 138, 0.28);
+  outline-offset: 3px;
+}
+
+.deck-arrow:disabled {
+  opacity: 0.16;
+  cursor: default;
+  box-shadow: none;
+}
+
+.deck-arrow-prev {
+  left: clamp(15px, 1.8vw, 29px);
+}
+
+.deck-arrow-next {
+  right: clamp(15px, 1.8vw, 29px);
+}
+
+@media (max-aspect-ratio: 4/3) {
+  .definition-block {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .rule {
+    width: 100%;
+    height: 1px;
+  }
+}
+
+@media (max-height: 680px) {
+  .slide-frame {
+    gap: 14px;
+  }
+
+  .setup {
+    margin-top: 10px;
+  }
+
+  .definition-label {
+    margin-bottom: 10px;
+  }
+}
+
+/* Slide 2: concentration on S^2 */
+
+.sphere-slide .slide-frame {
+  padding-top: clamp(26px, 3.5vw, 56px);
+  padding-bottom: clamp(30px, 3.8vw, 60px);
+  gap: clamp(13px, 1.8vh, 23px);
+}
+
+.sphere-header h1 {
+  font-size: clamp(42px, 4.4vw, 70px);
+  line-height: 1;
+}
+
+.sphere-header .title-math {
+  display: inline-block;
+  margin-left: 0.08em;
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: 0.96em;
+  font-weight: 500;
+  vertical-align: -0.04em;
+}
+
+.sphere-setting {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 5px clamp(18px, 2vw, 32px);
+  margin-top: clamp(7px, 0.9vh, 12px);
+  color: var(--muted);
+  font-size: clamp(14px, 1vw, 17px);
+}
+
+.sphere-setting-math {
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: clamp(21px, 1.75vw, 29px);
+}
+
+.compact-sphere-setting {
+  margin-top: clamp(8px, 1vh, 13px);
+}
+
+.sphere-setting span {
+  white-space: nowrap;
+}
+
+.sphere-setting em {
+  color: var(--ink);
+  font-family: var(--math);
+  font-style: italic;
+}
+
+.sphere-setting sub {
+  color: var(--ink);
+  font-family: var(--math);
+}
+
+.sphere-header .setup {
+  margin-top: clamp(5px, 0.75vh, 9px);
+  font-size: clamp(18px, 1.45vw, 24px);
+}
+
+.sphere-demo {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) 1px minmax(0, 1.08fr);
+  gap: clamp(24px, 2.7vw, 44px);
+  align-items: stretch;
+}
+
+.sphere-side,
+.curve-side {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.visual-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 34px;
+}
+
+.visual-heading h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(20px, 1.65vw, 27px);
+  font-weight: 720;
+  letter-spacing: -0.015em;
+}
+
+.visual-heading p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: clamp(14px, 1.02vw, 17px);
+  line-height: 1.3;
+}
+
+.demo-rule {
+  width: 1px;
+  height: 92%;
+  align-self: center;
+  background: var(--line);
+}
+
+.demo-canvas {
+  display: block;
+  width: 100%;
+  min-height: 0;
+}
+
+.sphere-canvas,
+.curve-canvas {
+  height: clamp(270px, 39vh, 390px);
+}
+
+.region-legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(16px, 2vw, 32px);
+  padding-top: 7px;
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: clamp(20px, 1.52vw, 25px);
+}
+
+.region-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.legend-swatch {
+  display: inline-block;
+  width: clamp(15px, 1.18vw, 19px);
+  height: clamp(15px, 1.18vw, 19px);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(16, 43, 58, 0.18);
+}
+
+.swatch-blue {
+  background: #2b6f9b;
+}
+
+.swatch-gold {
+  background: #e0a02d;
+}
+
+.swatch-red {
+  background: #cb443b;
+}
+
+.curve-heading {
+  align-items: center;
+}
+
+.alpha-readout {
+  flex: 0 0 auto;
+  color: #bd3c35;
+  font-family: var(--math);
+  font-size: clamp(25px, 2.15vw, 35px);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.alpha-readout::before {
+  content: "αₓ = ";
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.exact-formula {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  min-height: 35px;
+  padding-top: 4px;
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: clamp(19px, 1.52vw, 25px);
+}
+
+.formula-justification {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: clamp(12px, 0.9vw, 15px);
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
+
+.radius-control {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.24fr) minmax(420px, 1fr);
+  align-items: center;
+  gap: clamp(22px, 2.6vw, 42px);
+  padding-top: clamp(13px, 1.55vh, 20px);
+  padding-right: 86px;
+  border-top: 2px solid var(--ink);
+}
+
+.radius-control::before {
+  content: "";
+  position: absolute;
+}
+
+.radius-readout {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.radius-readout label {
+  color: var(--blue);
+  font-size: clamp(13px, 1vw, 16px);
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.radius-readout output {
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: clamp(22px, 1.75vw, 29px);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.slider-area {
+  min-width: 0;
+  padding-top: 13px;
+}
+
+#radiusSlider {
+  --progress: 11.14%;
+  width: 100%;
+  height: 28px;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: ew-resize;
+}
+
+#radiusSlider::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 99px;
+  background: linear-gradient(
+    to right,
+    var(--gold) 0,
+    var(--gold) var(--progress),
+    #cbd3d3 var(--progress),
+    #cbd3d3 100%
+  );
+  box-shadow: inset 0 0 0 1px rgba(16, 43, 58, 0.12);
+}
+
+#radiusSlider::-webkit-slider-thumb {
+  width: 25px;
+  height: 25px;
+  margin-top: -8.5px;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 3px solid var(--paper);
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 0 2px var(--blue), 0 3px 8px rgba(16, 43, 58, 0.22);
+}
+
+#radiusSlider::-moz-range-track {
+  height: 8px;
+  border-radius: 99px;
+  background: #cbd3d3;
+}
+
+#radiusSlider::-moz-range-progress {
+  height: 8px;
+  border-radius: 99px;
+  background: var(--gold);
+}
+
+#radiusSlider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--paper);
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 0 2px var(--blue), 0 3px 8px rgba(16, 43, 58, 0.22);
+}
+
+#radiusSlider:focus-visible {
+  outline: 3px solid rgba(37, 106, 138, 0.24);
+  outline-offset: 7px;
+  border-radius: 8px;
+}
+
+.slider-ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -1px;
+  color: var(--muted);
+  font-family: var(--math);
+  font-size: clamp(12px, 0.92vw, 15px);
+}
+
+@media (max-width: 1180px) {
+  .radius-control {
+    grid-template-columns: minmax(155px, 0.3fr) minmax(360px, 1fr);
+  }
+}
+
+@media (max-height: 720px) {
+  .sphere-slide .slide-frame {
+    padding-top: 25px;
+    padding-bottom: 28px;
+    gap: 10px;
+  }
+
+  .sphere-canvas,
+  .curve-canvas {
+    height: 285px;
+  }
+
+  .region-legend,
+  .exact-formula {
+    padding-top: 1px;
+  }
+
+  .radius-control {
+    padding-top: 9px;
+  }
+}
+
+/* Slide 3: definition of a Lévy family */
+
+.levy-slide .slide-frame {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.levy-header {
+  max-width: 1260px;
+}
+
+.levy-definition-block {
+  position: relative;
+  align-self: center;
+  padding: clamp(44px, 6.2vh, 72px) clamp(34px, 5vw, 80px) clamp(38px, 5.2vh, 62px);
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+
+.levy-definition-block::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: clamp(92px, 8.5vw, 136px);
+  height: 2px;
+  background: var(--gold);
+}
+
+.levy-label {
+  margin-bottom: clamp(22px, 3vh, 34px);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.levy-math {
+  font-size: clamp(31px, 3.15vw, 51px);
+}
+
+.levy-quantifier {
+  margin: clamp(24px, 3.2vh, 36px) 0 0;
+  color: var(--muted);
+  font-size: clamp(19px, 1.55vw, 25px);
+}
+
+.levy-quantifier math,
+.levy-meaning math {
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: 1.08em;
+}
+
+.levy-meaning {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(20px, 2.5vw, 38px);
+  padding-right: 88px;
+}
+
+.levy-meaning .meaning-label {
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+.levy-meaning > p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(20px, 1.62vw, 27px);
+  line-height: 1.35;
+}
+
+.levy-meaning strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.levy-meaning > p:last-child > span {
+  padding: 0 0.45em;
+  color: var(--gold);
+  font-weight: 800;
+}
+
+@media (max-width: 1050px) {
+  .levy-math {
+    font-size: clamp(27px, 3vw, 38px);
+  }
+
+  .levy-meaning {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (max-height: 680px) {
+  .levy-definition-block {
+    padding-top: 26px;
+    padding-bottom: 24px;
+  }
+
+  .levy-label {
+    margin-bottom: 15px;
+  }
+
+  .levy-quantifier {
+    margin-top: 15px;
+  }
+}
+
+/* Slide 4: the sphere Lévy family */
+
+.levy-example-slide .slide-frame,
+.product-example-slide .slide-frame {
+  padding-top: clamp(25px, 3.25vw, 52px);
+  padding-bottom: clamp(29px, 3.55vw, 57px);
+  gap: clamp(11px, 1.55vh, 20px);
+}
+
+.family-header h1 {
+  font-size: clamp(41px, 4.15vw, 66px);
+  line-height: 1;
+}
+
+.family-header .title-math {
+  display: inline-block;
+  margin-left: 0.07em;
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: 0.96em;
+  font-weight: 500;
+  vertical-align: -0.04em;
+}
+
+.family-setting-math {
+  display: block;
+  margin-top: clamp(7px, 0.85vh, 11px);
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: clamp(20px, 1.6vw, 27px);
+}
+
+.family-demo {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 0.94fr) 1px minmax(0, 1.06fr);
+  gap: clamp(22px, 2.5vw, 40px);
+  align-items: stretch;
+}
+
+.family-visual-side {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.family-visual-heading {
+  align-items: center;
+}
+
+.family-visual-heading p math {
+  color: var(--ink);
+  font-family: var(--math);
+}
+
+.family-dimension-badge,
+.family-alpha-badge {
+  flex: 0 0 auto;
+  color: var(--blue);
+  font-family: var(--math);
+  font-size: clamp(22px, 1.85vw, 30px);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.family-alpha-badge {
+  color: #bd3c35;
+}
+
+.family-alpha-badge::before {
+  content: "αₓₙ = ";
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.product-mass-badge {
+  flex: 0 0 auto;
+  color: #bd3c35;
+  font-family: var(--math);
+  font-size: clamp(22px, 1.85vw, 30px);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.product-mass-badge::before {
+  content: none;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.68em;
+  font-weight: 600;
+}
+
+.family-cloud-canvas,
+.family-curve-canvas {
+  height: clamp(255px, 36.5vh, 365px);
+}
+
+.family-legend {
+  gap: clamp(13px, 1.55vw, 25px);
+  padding-top: 3px;
+  font-size: clamp(20px, 1.45vw, 24px);
+}
+
+.family-limit-note {
+  margin: 0;
+  padding-top: 3px;
+  color: var(--muted);
+  text-align: center;
+  font-size: clamp(15px, 1.04vw, 18px);
+}
+
+.family-limit-note math {
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: 1.12em;
+}
+
+.product-limit-note math {
+  font-size: 1.2em;
+}
+
+.product-radius-readout output {
+  font-size: clamp(16px, 1.18vw, 20px);
+}
+
+.family-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 4vw, 64px);
+  padding-top: clamp(11px, 1.35vh, 17px);
+  padding-right: 86px;
+  border-top: 2px solid var(--ink);
+}
+
+.family-control-group {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(135px, 0.31fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(14px, 1.6vw, 25px);
+}
+
+.family-control-readout {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.family-control-readout label {
+  color: var(--blue);
+  font-size: clamp(11px, 0.82vw, 14px);
+  font-weight: 800;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.family-control-readout output {
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: clamp(19px, 1.45vw, 24px);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.family-slider-area {
+  min-width: 0;
+  padding-top: 10px;
+}
+
+.family-slider {
+  --progress: 40%;
+  width: 100%;
+  height: 25px;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: ew-resize;
+}
+
+.family-slider::-webkit-slider-runnable-track {
+  height: 7px;
+  border-radius: 99px;
+  background: linear-gradient(to right, var(--gold) 0, var(--gold) var(--progress), #cbd3d3 var(--progress), #cbd3d3 100%);
+  box-shadow: inset 0 0 0 1px rgba(16, 43, 58, 0.12);
+}
+
+.family-slider::-webkit-slider-thumb {
+  width: 22px;
+  height: 22px;
+  margin-top: -7.5px;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 3px solid var(--paper);
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 0 2px var(--blue), 0 3px 8px rgba(16, 43, 58, 0.22);
+}
+
+.family-slider::-moz-range-track {
+  height: 7px;
+  border-radius: 99px;
+  background: #cbd3d3;
+}
+
+.family-slider::-moz-range-progress {
+  height: 7px;
+  border-radius: 99px;
+  background: var(--gold);
+}
+
+.family-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border: 3px solid var(--paper);
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 0 2px var(--blue), 0 3px 8px rgba(16, 43, 58, 0.22);
+}
+
+.family-slider:focus-visible {
+  outline: 3px solid rgba(37, 106, 138, 0.24);
+  outline-offset: 6px;
+  border-radius: 8px;
+}
+
+.family-slider-ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -2px;
+  color: var(--muted);
+  font-family: var(--math);
+  font-size: clamp(10px, 0.75vw, 13px);
+}
+
+.product-dimension-ticks {
+  position: relative;
+  display: block;
+  height: 1.15em;
+}
+
+.product-dimension-ticks span {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.product-dimension-ticks span:first-child {
+  transform: none;
+}
+
+.product-dimension-ticks span:last-child {
+  transform: translateX(-100%);
+}
+
+@media (max-width: 1100px) {
+  .family-demo {
+    gap: 18px;
+  }
+
+  .family-controls {
+    gap: 25px;
+    padding-right: 74px;
+  }
+
+  .family-control-group {
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-height: 720px) {
+  .levy-example-slide .slide-frame,
+  .product-example-slide .slide-frame {
+    padding-top: 23px;
+    padding-bottom: 27px;
+    gap: 8px;
+  }
+
+  .family-cloud-canvas,
+  .family-curve-canvas {
+    height: 270px;
+  }
+
+  .family-controls {
+    padding-top: 8px;
+  }
+}
+
+/* Slide 6: Lipschitz characterization and Ledoux's sphere estimate */
+
+.lipschitz-slide {
+  --lipschitz-body-size: clamp(19px, 1.42vw, 23px);
+  --lipschitz-math-size: clamp(20px, 1.62vw, 26px);
+  --lipschitz-bottom-size: clamp(22px, 1.7vw, 28px);
+}
+
+.lipschitz-slide .slide-frame {
+  padding-top: clamp(29px, 3.8vw, 61px);
+  padding-bottom: clamp(31px, 3.9vw, 62px);
+  gap: clamp(15px, 2vh, 26px);
+}
+
+.lipschitz-header h1 {
+  font-size: clamp(43px, 4.55vw, 73px);
+}
+
+.lipschitz-header .setup {
+  margin-top: clamp(9px, 1.2vh, 14px);
+  font-size: var(--lipschitz-body-size);
+}
+
+.lipschitz-content {
+  min-height: 0;
+  align-self: stretch;
+  display: grid;
+  grid-template-columns: minmax(0, 0.96fr) 1px minmax(0, 1.04fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: clamp(24px, 2.8vw, 45px);
+  padding-top: clamp(21px, 2.7vh, 31px);
+  border-top: 2px solid var(--ink);
+}
+
+.lipschitz-content::before {
+  content: "";
+  position: absolute;
+}
+
+.lipschitz-equivalence,
+.ledoux-result {
+  min-width: 0;
+  align-self: center;
+}
+
+.lipschitz-equivalence .definition-label,
+.ledoux-result .definition-label {
+  margin-bottom: clamp(15px, 1.9vh, 22px);
+  text-align: center;
+  font-size: var(--lipschitz-body-size);
+}
+
+.equivalence-intro,
+.normalized-label,
+.consequence-label {
+  margin: 0;
+  color: var(--muted);
+  text-align: center;
+  font-size: var(--lipschitz-body-size);
+}
+
+.equivalence-intro math,
+.normalized-label math,
+.consequence-label math {
+  color: var(--ink);
+  font-family: var(--math);
+}
+
+.lipschitz-definition-math,
+.equivalence-math,
+.ledoux-math {
+  font-size: var(--lipschitz-math-size);
+}
+
+.lipschitz-definition-math {
+  margin-top: clamp(7px, 0.85vh, 10px);
+}
+
+.consequence-label {
+  margin-top: clamp(9px, 1.1vh, 13px);
+}
+
+.equivalence-math {
+  margin-top: clamp(11px, 1.35vh, 16px);
+}
+
+.normalized-label {
+  margin: clamp(12px, 1.55vh, 18px) 0 clamp(7px, 0.9vh, 11px);
+}
+
+.equivalence-conclusion {
+  margin: clamp(12px, 1.5vh, 17px) 0 0;
+  color: var(--muted);
+  text-align: center;
+  font-size: var(--lipschitz-body-size);
+}
+
+.lipschitz-rule {
+  grid-column: 2;
+  grid-row: 1;
+  width: 1px;
+  height: 88%;
+  align-self: center;
+  background: var(--line);
+}
+
+.ledoux-result {
+  grid-column: 3;
+}
+
+.ledoux-assumption {
+  margin: 0 0 clamp(16px, 2vh, 23px);
+  color: var(--muted);
+  text-align: center;
+  font-size: var(--lipschitz-body-size);
+}
+
+.ledoux-assumption math,
+.ledoux-source math,
+.sphere-conclusion math {
+  color: var(--ink);
+  font-family: var(--math);
+}
+
+.ledoux-source {
+  margin: clamp(20px, 2.5vh, 28px) 0 0;
+  color: var(--muted);
+  text-align: center;
+  font-size: clamp(14px, 1vw, 17px);
+}
+
+.sphere-conclusion {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.55em;
+  padding: clamp(15px, 1.8vh, 21px) 22px;
+  background: var(--blue-soft);
+  color: var(--muted);
+  font-size: var(--lipschitz-bottom-size);
+}
+
+.sphere-conclusion strong {
+  color: var(--ink);
+  font-weight: 750;
+}
+
+.conclusion-arrow {
+  color: var(--gold);
+  font-size: 1.12em;
+  font-weight: 800;
+}
+
+.extension-question {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(22px, 2.8vw, 42px);
+  padding-right: 88px;
+}
+
+.extension-question .meaning-label {
+  flex: 0 0 auto;
+  margin: 0;
+  font-size: var(--lipschitz-bottom-size);
+}
+
+.extension-question > p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--lipschitz-bottom-size);
+}
+
+.extension-question strong {
+  color: var(--ink);
+  font-weight: 750;
+}
+
+@media (max-width: 1080px) {
+  .lipschitz-content {
+    gap: 20px;
+  }
+
+}
+
+@media (max-height: 690px) {
+  .lipschitz-slide .slide-frame {
+    padding-top: 24px;
+    padding-bottom: 27px;
+    gap: 10px;
+  }
+
+  .lipschitz-content {
+    padding-top: 15px;
+  }
+
+  .lipschitz-equivalence .definition-label,
+  .ledoux-result .definition-label {
+    margin-bottom: 14px;
+  }
+
+  .equivalence-conclusion,
+  .ledoux-source {
+    margin-top: 14px;
+  }
+
+  .sphere-conclusion {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+/* ========================================================================== */
+/* Slides 4–5: use the full comparison stage instead of vertically centering
+   each panel, while keeping clear separation between headings, plots and controls. */
+/* ========================================================================== */
+/* Projector readability pass                                                  */
+/* Larger body type and tighter use of the 16:9 canvas.                        */
+/* ========================================================================== */
+
+:root {
+  --body-large: clamp(23px, 1.85vw, 29px);
+  --body-medium: clamp(21px, 1.62vw, 26px);
+  --body-small: clamp(19px, 1.35vw, 22px);
+  --math-medium: clamp(25px, 1.9vw, 31px);
+  --math-large: clamp(30px, 2.35vw, 38px);
+}
+
+.slide .slide-frame {
+  padding-top: clamp(22px, 2vw, 32px);
+  padding-right: clamp(46px, 3.55vw, 57px);
+  padding-bottom: clamp(38px, 4.6vh, 46px);
+  padding-left: clamp(46px, 3.55vw, 57px);
+  gap: clamp(5px, 0.72vh, 8px);
+}
+
+.slide .setup {
+  margin-top: clamp(10px, 1.25vh, 14px);
+  font-size: var(--body-large) !important;
+  line-height: 1.22;
+}
+
+.sphere-header h1 + .sphere-setting,
+.family-header h1 + .family-setting-math {
+  margin-top: clamp(11px, 1.35vh, 15px);
+}
+
+.definition-label,
+.visual-heading h2,
+.family-visual-heading h2,
+.unique-profile-heading h2,
+.dominant-panel-heading h2,
+.revolution-visual-heading .definition-label,
+.revolution-setting-definition > .definition-label {
+  font-size: clamp(21px, 1.55vw, 25px);
+  line-height: 1.15;
+}
+
+.meaning-label {
+  font-size: clamp(14px, 1.05vw, 17px);
+}
+
+.meaning-text,
+.levy-meaning p,
+.extension-question > p:last-child,
+.revolution-setting-question > p:last-child {
+  font-size: var(--body-large);
+  line-height: 1.24;
+}
+
+/* Slide 1: let the definition occupy the unused middle of the slide. */
+.slide[data-slide="1"] .definition-block {
+  min-height: clamp(355px, 50vh, 460px);
+  align-content: space-evenly;
+  padding: clamp(16px, 2vh, 22px) clamp(22px, 2vw, 32px);
+  gap: clamp(9px, 1.1vh, 13px);
+}
+
+.slide[data-slide="1"] .definition-block .definition-label {
+  margin-bottom: clamp(8px, 0.9vh, 11px);
+  font-size: clamp(25px, 1.9vw, 30px);
+  line-height: 1.22;
+}
+
+.slide[data-slide="1"] .neighborhood-math {
+  font-size: clamp(34px, 2.55vw, 41px);
+}
+
+.slide[data-slide="1"] .concentration-math {
+  font-size: clamp(30px, 2.3vw, 37px);
+}
+
+.slide[data-slide="1"] .meaning {
+  padding: clamp(10px, 1.25vh, 14px) clamp(16px, 1.5vw, 24px);
+}
+
+/* Slides 2, 4, 5: enlarge all audience-facing chart labels and controls. */
+.sphere-setting-math,
+.family-setting-math {
+  font-size: var(--math-medium);
+}
+
+.visual-heading p,
+.family-limit-note {
+  font-size: var(--body-small);
+}
+
+.formula-justification,
+.sphere-setting,
+.slider-ticks,
+.family-slider-ticks {
+  font-size: clamp(14px, 1vw, 17px);
+}
+
+.radius-readout label,
+.family-control-readout label {
+  font-size: clamp(15px, 1.08vw, 18px);
+}
+
+.radius-readout output,
+.family-control-readout output,
+.product-radius-readout output {
+  font-size: clamp(21px, 1.6vw, 26px);
+}
+
+.family-controls,
+.radius-control {
+  padding-top: clamp(7px, 0.85vh, 10px);
+}
+
+/* Slide 3. */
+.levy-label {
+  font-size: clamp(21px, 1.55vw, 25px);
+}
+
+.levy-quantifier {
+  font-size: var(--body-large);
+}
+
+/* Slide 6: use the full middle region instead of leaving a blank lower half. */
+.lipschitz-slide {
+  --lipschitz-body-size: clamp(21px, 1.55vw, 25px);
+  --lipschitz-math-size: clamp(24px, 1.8vw, 29px);
+  --lipschitz-bottom-size: clamp(22px, 1.65vw, 27px);
+}
+
+.lipschitz-content {
+  height: 100%;
+  grid-template-rows: minmax(0, 1.2fr) minmax(0, 0.82fr) auto;
+  gap: clamp(5px, 0.65vh, 7px);
+}
+
+.lipschitz-equivalence,
+.ledoux-result {
+  display: grid;
+  align-content: center;
+  padding: clamp(8px, 1vh, 12px) clamp(18px, 1.5vw, 24px);
+}
+
+.lipschitz-equivalence .definition-label,
+.ledoux-result .definition-label {
+  font-size: clamp(21px, 1.55vw, 25px);
+}
+
+.sphere-conclusion {
+  padding: clamp(10px, 1.2vh, 14px) 18px;
+}
+
+/* Slide 7. */
+.revolution-setting-label {
+  font-size: clamp(18px, 1.35vw, 22px);
+}
+
+.revolution-profile-math,
+.revolution-space-math,
+.revolution-measure-math {
+  font-size: clamp(22px, 1.68vw, 27px);
+}
+
+.revolution-triple p,
+.revolution-measure-note,
+.revolution-setting-visual figcaption {
+  font-size: clamp(16px, 1.18vw, 19px);
+}
+
+.revolution-triple > math {
+  font-size: clamp(27px, 2.05vw, 33px);
+}
+
+/* Slide 8: enlarge the theorem copy while tightening the old card spacing. */
+.main-theorem-content {
+  gap: clamp(4px, 0.52vh, 6px);
+}
+
+.main-theorem-slide .slide-header h1 {
+  font-size: clamp(29px, 2.3vw, 37px) !important;
+}
+
+.main-theorem-slide .setup {
+  font-size: clamp(23px, 1.8vw, 29px) !important;
+}
+
+.theorem-assumptions,
+.theorem-unique {
+  padding: clamp(4px, 0.55vh, 6px) clamp(13px, 1.2vw, 19px);
+}
+
+.theorem-assumptions .definition-label,
+.theorem-unique .definition-label,
+.theorem-bound-heading .definition-label {
+  font-size: clamp(22px, 1.62vw, 26px);
+}
+
+.theorem-maxima-math,
+.theorem-local-math,
+.theorem-unique-math,
+.theorem-criterion {
+  font-size: clamp(23px, 1.72vw, 28px);
+  line-height: 1.06;
+}
+
+.theorem-copy,
+.theorem-order-note,
+.theorem-remark > p:last-child,
+.theorem-bound-heading > p:last-child,
+.theorem-limit {
+  font-size: clamp(20px, 1.42vw, 23px);
+  line-height: 1.15;
+}
+
+.theorem-remark-label {
+  font-size: clamp(14px, 1vw, 17px);
+}
+
+.theorem-remark {
+  margin-top: 3px;
+  padding: 5px 12px;
+}
+
+.theorem-bound {
+  padding: clamp(6px, 0.72vh, 8px) clamp(16px, 1.5vw, 24px);
+  gap: 2px;
+}
+
+.theorem-bound-math {
+  font-size: clamp(24px, 1.82vw, 29px);
+  line-height: 0.98;
+}
+
+.theorem-limit {
+  padding-top: 2px;
+}
+
+/* Slide 9. */
+.unique-profile-heading > div > math {
+  font-size: clamp(22px, 1.68vw, 27px);
+}
+
+.unique-domain-line,
+.unique-outside-readout,
+.unique-control-label {
+  font-size: clamp(16px, 1.18vw, 19px);
+}
+
+.unique-control-label output,
+.unique-maximum-limit math {
+  font-size: clamp(21px, 1.58vw, 25px);
+}
+
+.unique-maximum-limit strong {
+  font-size: clamp(20px, 1.48vw, 24px);
+}
+
+/* Slides 10–12: the function and concrete maxima data are presentation text. */
+.dominant-maxima-header .dominant-profile-equation {
+  margin-top: clamp(9px, 1.1vh, 12px);
+  font-size: clamp(25px, 1.95vw, 31px);
+  line-height: 1.08;
+}
+
+.dominant-maxima-header .setup {
+  margin-top: clamp(7px, 0.9vh, 10px);
+  font-size: clamp(24px, 1.82vw, 29px) !important;
+  line-height: 1.12;
+}
+
+.dominant-panel-heading h2 {
+  font-size: clamp(22px, 1.65vw, 27px);
+}
+
+.dominant-set-definition,
+.halfset-choice button {
+  font-size: clamp(19px, 1.42vw, 23px) !important;
+}
+
+.dominant-panel-heading > div > p,
+.dominant-share-readout,
+.dominant-order-ratio {
+  font-size: clamp(16px, 1.18vw, 19px);
+}
+
+.dominant-share-readout output {
+  font-size: clamp(23px, 1.72vw, 28px);
+}
+
+.dominant-maxima-content {
+  padding-top: clamp(6px, 0.72vh, 8px);
+}
+
+.dominant-maxima-controls .unique-maximum-legend {
+  font-size: clamp(22px, 1.65vw, 27px);
+}
+
+@media (max-width: 1080px) {
+  .slide .slide-frame {
+    padding-right: 38px;
+    padding-left: 38px;
+  }
+
+  .slide[data-slide="1"] .concentration-math {
+    font-size: 27px;
+  }
+
+  .theorem-maxima-math,
+  .theorem-local-math,
+  .theorem-unique-math,
+  .theorem-criterion,
+  .theorem-bound-math {
+    font-size: 20px;
+  }
+
+  .revolution-profile-math,
+  .revolution-space-math,
+  .revolution-measure-math {
+    font-size: 20px;
+  }
+
+  .dominant-maxima-header .dominant-profile-equation {
+    font-size: 24px;
+  }
+}
+
+@media (max-height: 690px) {
+  .slide .slide-frame {
+    padding-top: 14px;
+    padding-bottom: 33px;
+    gap: 3px;
+  }
+
+  .slide[data-slide="1"] .definition-block {
+    min-height: 360px;
+  }
+
+  .lipschitz-equivalence,
+  .ledoux-result,
+  .theorem-assumptions,
+  .theorem-unique,
+  .theorem-bound {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+}
+
+/* Center fixed-size figures vertically inside the remaining content area. */
+.sphere-side,
+.curve-side,
+.family-visual-side,
+.dominant-single-panel,
+.revolution-setting-visual {
+  width: 100%;
+  align-self: center;
+}
+
+/* Slide 9: unique maximum examples with MCP */
+
+.unique-maximum-slide .slide-frame {
+  padding-top: clamp(27px, 3.5vw, 56px);
+  padding-bottom: clamp(29px, 3.55vw, 57px);
+  gap: clamp(13px, 1.75vh, 22px);
+}
+
+.unique-maximum-header h1 {
+  font-size: clamp(41px, 4.35vw, 70px);
+}
+
+.unique-maximum-header .setup {
+  margin-top: clamp(8px, 1vh, 12px);
+  font-size: clamp(18px, 1.38vw, 23px);
+}
+
+.unique-maximum-content {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+  gap: clamp(22px, 2.7vw, 43px);
+  padding-top: clamp(15px, 1.85vh, 22px);
+  border-top: 2px solid var(--ink);
+}
+
+.unique-profile-panel {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.unique-profile-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.unique-profile-heading h2 {
+  margin: 0;
+  color: var(--blue);
+  font-size: clamp(22px, 1.75vw, 29px);
+  font-weight: 750;
+}
+
+.unique-profile-heading > div > math {
+  display: block;
+  margin-top: clamp(5px, 0.65vh, 8px);
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: clamp(20px, 1.55vw, 25px);
+}
+
+.unique-domain-line {
+  margin: clamp(5px, 0.65vh, 8px) 0 0;
+  color: var(--muted);
+  font-size: clamp(13px, 0.94vw, 16px);
+}
+
+.unique-domain-line math {
+  color: var(--ink);
+  font-family: var(--math);
+}
+
+.unique-outside-readout {
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--muted);
+  text-align: right;
+  font-size: clamp(14px, 1vw, 17px);
+}
+
+.unique-outside-readout math {
+  display: block;
+  color: var(--ink);
+  font-family: var(--math);
+}
+
+.unique-outside-readout output {
+  display: block;
+  margin-top: 3px;
+  color: #bd3c35;
+  font-family: var(--math);
+  font-size: clamp(22px, 1.7vw, 28px);
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+}
+
+#ellipseMcpCanvas,
+#parabolaMcpCanvas {
+  width: 100%;
+  height: 100%;
+  min-height: 275px;
+  display: block;
+  cursor: grab;
+  touch-action: none;
+}
+
+#ellipseMcpCanvas:active,
+#parabolaMcpCanvas:active {
+  cursor: grabbing;
+}
+
+.unique-maximum-rule {
+  width: 1px;
+  height: 91%;
+  align-self: center;
+  background: var(--line);
+}
+
+.unique-maximum-controls {
+  display: grid;
+  grid-template-columns: auto minmax(270px, 1fr) minmax(220px, 0.68fr) auto;
+  align-items: center;
+  gap: clamp(24px, 3vw, 48px);
+  padding-top: clamp(13px, 1.6vh, 19px);
+  padding-right: 88px;
+  border-top: 2px solid var(--ink);
+}
+
+.unique-maximum-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: var(--muted);
+  font-size: clamp(21px, 1.55vw, 26px);
+}
+
+.unique-maximum-legend span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.unique-maximum-legend math {
+  color: var(--ink);
+  font-family: var(--math);
+}
+
+.unique-swatch {
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+}
+
+.unique-swatch-blue {
+  background: var(--blue);
+}
+
+.unique-swatch-gold {
+  background: var(--gold);
+}
+
+.unique-swatch-red {
+  background: #cb443b;
+}
+
+.unique-dimension-control,
+.unique-radius-control {
+  min-width: 0;
+}
+
+.unique-control-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: clamp(14px, 1vw, 17px);
+}
+
+.unique-control-label math,
+.unique-control-label output {
+  color: var(--ink);
+  font-family: var(--math);
+}
+
+.unique-control-label output {
+  font-size: clamp(19px, 1.45vw, 24px);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.unique-maximum-limit {
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+}
+
+.unique-maximum-limit math {
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: clamp(19px, 1.45vw, 24px);
+}
+
+.unique-maximum-limit strong {
+  color: var(--blue);
+  font-size: clamp(18px, 1.3vw, 22px);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 1080px) {
+  .unique-maximum-content {
+    gap: 18px;
+  }
+
+  .unique-profile-heading > div > math {
+    font-size: 19px;
+  }
+
+  .unique-maximum-controls {
+    grid-template-columns: auto minmax(230px, 1fr) minmax(175px, 0.62fr) auto;
+    gap: 14px;
+  }
+}
+
+@media (max-height: 690px) {
+  .unique-maximum-slide .slide-frame {
+    padding-top: 22px;
+    padding-bottom: 25px;
+    gap: 9px;
+  }
+
+  .unique-maximum-content {
+    padding-top: 11px;
+  }
+
+  #ellipseMcpCanvas,
+  #parabolaMcpCanvas {
+    min-height: 225px;
+  }
+
+  .unique-maximum-controls {
+    padding-top: 10px;
+  }
+}
+
+/* Slide 10: several maxima with one dominant local order */
+
+.dominant-maxima-slide .slide-frame {
+  padding-top: clamp(27px, 3.5vw, 56px);
+  padding-bottom: clamp(29px, 3.55vw, 57px);
+  gap: clamp(13px, 1.75vh, 22px);
+}
+
+.dominant-maxima-header h1 {
+  font-size: clamp(39px, 4.05vw, 65px);
+}
+
+.dominant-maxima-header .setup {
+  margin-top: clamp(5px, 0.7vh, 8px);
+  color: var(--muted);
+  font-size: clamp(20px, 1.55vw, 25px);
+}
+
+.dominant-maxima-header .setup math {
+  color: var(--ink);
+  font-family: var(--math);
+}
+
+.dominant-maxima-content {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: clamp(7px, 0.85vh, 10px) clamp(22px, 2.7vw, 43px);
+  padding-top: clamp(15px, 1.85vh, 22px);
+  border-top: 2px solid var(--ink);
+}
+
+.dominant-maxima-content.dominant-dual-content {
+  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+  column-gap: clamp(18px, 2.25vw, 36px);
+}
+
+.dominant-dual-content .dominant-surface-panel canvas {
+  height: clamp(245px, 34vh, 340px);
+  min-height: 0;
+}
+
+.dominant-profile-equation {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: clamp(19px, 1.42vw, 23px);
+  text-align: center;
+}
+
+.dominant-maxima-header .dominant-profile-equation {
+  display: block;
+  margin-top: clamp(8px, 1vh, 12px);
+  font-size: clamp(22px, 1.72vw, 28px);
+  text-align: left;
+}
+
+.dominant-left-panel {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.dominant-right-panel {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.dominant-single-panel {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.dominant-single-panel #dominantSurfaceCanvasLeft {
+  height: clamp(300px, 43vh, 430px);
+  min-height: 0;
+}
+
+.dominant-single-panel #equalDominantSurfaceCanvas {
+  height: clamp(300px, 43vh, 430px);
+  min-height: 0;
+}
+
+.dominant-single-panel #fractionalDominantSurfaceCanvas {
+  height: clamp(300px, 43vh, 430px);
+  min-height: 0;
+}
+
+.fractional-profile-equation {
+  font-size: clamp(18px, 1.32vw, 22px);
+}
+
+.dominant-profile-panel,
+.dominant-surface-panel {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+}
+
+.dominant-profile-panel {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.dominant-surface-panel {
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.dominant-panel-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.dominant-panel-heading h2 {
+  margin: 0;
+  color: var(--blue);
+  font-size: clamp(21px, 1.65vw, 27px);
+  font-weight: 750;
+}
+
+.dominant-panel-heading > div > math {
+  display: block;
+  margin-top: 5px;
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: clamp(18px, 1.32vw, 22px);
+}
+
+.dominant-set-definition {
+  font-size: clamp(20px, 1.48vw, 24px) !important;
+}
+
+.halfset-choice {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.15vw, 18px);
+  margin-top: 6px;
+}
+
+.halfset-choice button {
+  padding: 0 0 3px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--math);
+  font-size: clamp(17px, 1.25vw, 21px);
+  cursor: pointer;
+}
+
+.halfset-choice button.is-active {
+  border-bottom-color: var(--blue);
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.halfset-choice button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.dominant-panel-heading > div > p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: clamp(14px, 0.98vw, 16px);
+}
+
+.dominant-panel-heading > div > p math {
+  color: var(--ink);
+  font-family: var(--math);
+}
+
+.dominant-share-readout {
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--muted);
+  text-align: right;
+  font-size: clamp(13px, 0.94vw, 15px);
+}
+
+.dominant-share-readout math,
+.dominant-share-readout output {
+  color: var(--ink);
+  font-family: var(--math);
+}
+
+.dominant-share-readout output {
+  display: block;
+  margin-top: 3px;
+  color: var(--gold);
+  font-size: clamp(21px, 1.6vw, 26px);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+#dominantSurfaceCanvasLeft,
+#dominantSurfaceCanvasRight,
+#equalDominantSurfaceCanvas,
+#equalDominantSurfaceCanvasLeft,
+#equalDominantSurfaceCanvasRight,
+#fractionalDominantSurfaceCanvas,
+#fractionalDominantSurfaceCanvasLeft,
+#fractionalDominantSurfaceCanvasRight {
+  width: 100%;
+  height: 100%;
+  min-height: 315px;
+  display: block;
+}
+
+#dominantSurfaceCanvasLeft,
+#dominantSurfaceCanvasRight,
+#equalDominantSurfaceCanvas,
+#equalDominantSurfaceCanvasLeft,
+#equalDominantSurfaceCanvasRight,
+#fractionalDominantSurfaceCanvas,
+#fractionalDominantSurfaceCanvasLeft,
+#fractionalDominantSurfaceCanvasRight {
+  cursor: grab;
+  touch-action: none;
+}
+
+#dominantSurfaceCanvasLeft:active,
+#dominantSurfaceCanvasRight:active,
+#equalDominantSurfaceCanvas:active,
+#equalDominantSurfaceCanvasLeft:active,
+#equalDominantSurfaceCanvasRight:active,
+#fractionalDominantSurfaceCanvas:active,
+#fractionalDominantSurfaceCanvasLeft:active,
+#fractionalDominantSurfaceCanvasRight:active {
+  cursor: grabbing;
+}
+
+.equal-maximum-limit strong {
+  color: #bd3c35;
+}
+
+.dominant-order-ratio {
+  margin: 4px 0 0;
+  color: var(--muted);
+  text-align: center;
+  font-size: clamp(16px, 1.14vw, 19px);
+}
+
+.dominant-order-ratio math {
+  color: var(--ink);
+  font-family: var(--math);
+}
+
+.dominant-maxima-rule {
+  grid-column: 2;
+  grid-row: 2;
+  width: 1px;
+  height: 91%;
+  align-self: center;
+  background: var(--line);
+}
+
+.dominant-maxima-controls {
+  gap: clamp(20px, 2.45vw, 39px);
+}
+
+@media (max-width: 1080px) {
+  .dominant-maxima-content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .dominant-maxima-content.dominant-dual-content {
+    grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+    column-gap: 12px;
+  }
+
+  .dominant-panel-heading > div > math {
+    font-size: 17px;
+  }
+
+  .dominant-maxima-controls {
+    grid-template-columns: auto minmax(205px, 1fr) minmax(155px, 0.64fr) auto;
+    gap: 12px;
+    padding-right: 0;
+  }
+
+  .dominant-maxima-controls .unique-control-label > span {
+    white-space: nowrap;
+  }
+
+  .dominant-maxima-controls .unique-maximum-limit math {
+    font-size: 18px;
+  }
+}
+
+@media (max-height: 690px) {
+  .dominant-maxima-slide .slide-frame {
+    padding-top: 22px;
+    padding-bottom: 25px;
+    gap: 9px;
+  }
+
+  .dominant-maxima-content {
+    padding-top: 11px;
+  }
+
+  #dominantSurfaceCanvasLeft,
+  #dominantSurfaceCanvasRight,
+  #equalDominantSurfaceCanvasLeft,
+  #equalDominantSurfaceCanvasRight,
+  #fractionalDominantSurfaceCanvasLeft,
+  #fractionalDominantSurfaceCanvasRight {
+    min-height: 215px;
+  }
+
+  .dominant-single-panel #dominantSurfaceCanvasLeft,
+  .dominant-single-panel #equalDominantSurfaceCanvas,
+  .dominant-single-panel #fractionalDominantSurfaceCanvas {
+    height: 285px;
+    min-height: 0;
+  }
+
+  .dominant-dual-content .dominant-surface-panel canvas {
+    height: 220px;
+    min-height: 0;
+  }
+
+  .dominant-maxima-controls {
+    padding-top: 10px;
+  }
+}
+
+/* Slide 8: main theorem and quantitative concentration bound */
+
+.main-theorem-slide .slide-frame {
+  padding-top: clamp(27px, 3.5vw, 56px);
+  padding-bottom: clamp(28px, 3.45vw, 55px);
+  gap: clamp(13px, 1.75vh, 22px);
+}
+
+.main-theorem-header h1 {
+  font-size: clamp(43px, 4.65vw, 74px);
+}
+
+.main-theorem-header .setup {
+  margin-top: clamp(8px, 1vh, 12px);
+  font-size: clamp(20px, 1.5vw, 24px);
+}
+
+.main-theorem-content {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: clamp(17px, 2.1vh, 26px) clamp(23px, 2.8vw, 45px);
+  padding-top: clamp(15px, 1.85vh, 22px);
+  border-top: 2px solid var(--ink);
+}
+
+.theorem-assumptions,
+.theorem-unique {
+  min-width: 0;
+  align-self: center;
+  text-align: center;
+}
+
+.theorem-assumptions .definition-label,
+.theorem-unique .definition-label {
+  margin-bottom: clamp(10px, 1.25vh, 15px);
+}
+
+.theorem-maxima-math,
+.theorem-local-math,
+.theorem-unique-math {
+  font-size: clamp(20px, 1.55vw, 25px);
+}
+
+.theorem-copy {
+  margin: clamp(11px, 1.35vh, 16px) 0 clamp(7px, 0.85vh, 10px);
+  color: var(--muted);
+  font-size: clamp(17px, 1.18vw, 20px);
+}
+
+.theorem-copy math,
+.theorem-order-note math,
+.theorem-remark math,
+.theorem-flattest-note math,
+.theorem-bound-heading math,
+.theorem-limit math {
+  color: var(--ink);
+  font-family: var(--math);
+}
+
+.theorem-order-note {
+  margin: clamp(11px, 1.35vh, 16px) 0 0;
+  color: var(--muted);
+  font-size: clamp(17px, 1.18vw, 20px);
+}
+
+.main-theorem-rule {
+  width: 1px;
+  height: 82%;
+  align-self: center;
+  background: var(--line);
+}
+
+.theorem-flattest-note {
+  margin: clamp(14px, 1.7vh, 20px) 0 0;
+  color: var(--muted);
+  font-size: clamp(18px, 1.32vw, 22px);
+}
+
+.theorem-flattest-note span {
+  padding: 0 0.35em;
+  color: var(--gold);
+  font-weight: 800;
+}
+
+.theorem-remark {
+  margin-top: clamp(13px, 1.55vh, 18px);
+  padding: clamp(11px, 1.35vh, 16px) clamp(14px, 1.5vw, 23px);
+  border-left: 5px solid var(--gold);
+  background: rgba(212, 154, 56, 0.09);
+  text-align: left;
+}
+
+.theorem-remark-label {
+  margin: 0 0 5px;
+  color: var(--gold);
+  font-size: clamp(13px, 0.92vw, 15px);
+  font-weight: 850;
+  letter-spacing: 0.14em;
+}
+
+.theorem-criterion {
+  font-size: clamp(20px, 1.48vw, 24px);
+  text-align: center;
+}
+
+.theorem-remark > p:last-child {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: clamp(16px, 1.08vw, 18px);
+  line-height: 1.28;
+}
+
+.theorem-remark strong {
+  color: #cb443b;
+}
+
+.theorem-bound {
+  grid-column: 1 / -1;
+  min-height: 0;
+  padding: clamp(15px, 1.8vh, 21px) clamp(20px, 2.2vw, 35px);
+  background: var(--blue-soft);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: clamp(9px, 1.1vh, 13px);
+}
+
+.theorem-bound-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.theorem-bound-heading .definition-label {
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+.theorem-bound-heading > p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(15px, 1.08vw, 18px);
+}
+
+.theorem-bound-math {
+  align-self: center;
+  font-size: clamp(19px, 1.48vw, 24px);
+  line-height: 1.03;
+}
+
+.theorem-limit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6em;
+  color: var(--muted);
+  font-size: clamp(16px, 1.18vw, 20px);
+}
+
+.theorem-limit strong {
+  color: var(--ink);
+  font-weight: 750;
+}
+
+.theorem-limit-arrow {
+  color: var(--gold);
+  font-weight: 800;
+}
+
+@media (max-width: 1080px) {
+  .main-theorem-content {
+    gap: 16px 20px;
+  }
+
+  .theorem-maxima-math,
+  .theorem-local-math,
+  .theorem-unique-math {
+    font-size: 19px;
+  }
+
+  .theorem-criterion {
+    font-size: 18px;
+  }
+
+  .theorem-bound-math {
+    font-size: 18px;
+  }
+
+  .theorem-limit {
+    font-size: 16px;
+  }
+}
+
+@media (max-height: 690px) {
+  .main-theorem-slide .slide-frame {
+    padding-top: 22px;
+    padding-bottom: 25px;
+    gap: 9px;
+  }
+
+  .main-theorem-content {
+    padding-top: 11px;
+    gap: 12px 22px;
+  }
+
+  .theorem-assumptions .definition-label,
+  .theorem-unique .definition-label {
+    margin-bottom: 8px;
+  }
+
+  .theorem-copy {
+    margin-top: 8px;
+    margin-bottom: 5px;
+  }
+
+  .theorem-order-note,
+  .theorem-remark {
+    margin-top: 8px;
+  }
+
+  .theorem-remark {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .theorem-flattest-note {
+    margin-top: 9px;
+  }
+
+  .theorem-bound {
+    padding-top: 11px;
+    padding-bottom: 11px;
+    gap: 7px;
+  }
+}
+
+/* Slide 7: hypersurfaces of revolution setting */
+
+.revolution-setting-slide .slide-frame {
+  padding-top: clamp(28px, 3.7vw, 59px);
+  padding-bottom: clamp(30px, 3.7vw, 59px);
+  gap: clamp(14px, 1.9vh, 24px);
+}
+
+.revolution-setting-header h1 {
+  font-size: clamp(42px, 4.5vw, 72px);
+}
+
+.revolution-setting-header .setup {
+  margin-top: clamp(8px, 1vh, 12px);
+  font-size: clamp(19px, 1.48vw, 24px);
+}
+
+.revolution-setting-content {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) 1px minmax(0, 1.18fr);
+  gap: clamp(22px, 2.7vw, 43px);
+  padding-top: clamp(16px, 2vh, 24px);
+  border-top: 2px solid var(--ink);
+}
+
+.revolution-setting-visual {
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  align-self: center;
+}
+
+.revolution-visual-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.revolution-visual-heading .definition-label,
+.revolution-setting-definition > .definition-label {
+  margin-bottom: clamp(10px, 1.25vh, 15px);
+}
+
+.revolution-visual-heading > span {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: clamp(11px, 0.82vw, 14px);
+  font-weight: 750;
+  letter-spacing: 0.14em;
+}
+
+#revolutionSettingCanvas {
+  width: 100%;
+  height: clamp(250px, 38vh, 350px);
+  min-height: 0;
+  display: block;
+  cursor: grab;
+  touch-action: none;
+}
+
+#revolutionSettingCanvas:active {
+  cursor: grabbing;
+}
+
+.revolution-setting-visual figcaption {
+  margin-top: clamp(6px, 0.8vh, 10px);
+  color: var(--muted);
+  text-align: center;
+  font-size: clamp(14px, 1vw, 17px);
+}
+
+.revolution-setting-visual figcaption math {
+  color: var(--ink);
+  font-family: var(--math);
+}
+
+.revolution-setting-rule {
+  width: 1px;
+  height: 88%;
+  align-self: center;
+  background: var(--line);
+}
+
+.revolution-setting-definition {
+  min-width: 0;
+  align-self: center;
+}
+
+.revolution-setting-label {
+  margin: clamp(10px, 1.15vh, 14px) 0 clamp(5px, 0.7vh, 8px);
+  color: var(--muted);
+  font-size: clamp(15px, 1.05vw, 18px);
+  font-weight: 700;
+}
+
+.revolution-profile-math,
+.revolution-space-math {
+  font-size: clamp(20px, 1.55vw, 25px);
+}
+
+.revolution-space-math {
+  line-height: 1.08;
+}
+
+.revolution-triple {
+  margin-top: clamp(14px, 1.7vh, 20px);
+  padding: clamp(11px, 1.35vh, 16px) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+
+.revolution-triple > math {
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: clamp(25px, 2vw, 32px);
+}
+
+.revolution-triple p {
+  margin: clamp(7px, 0.85vh, 10px) 0 0;
+  color: var(--muted);
+  font-size: clamp(14px, 1vw, 17px);
+}
+
+.revolution-triple p math {
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: 1.08em;
+}
+
+.revolution-triple p span {
+  padding: 0 0.35em;
+  color: var(--gold);
+}
+
+.revolution-measure {
+  margin-top: clamp(10px, 1.25vh, 15px);
+}
+
+.revolution-measure .revolution-setting-label {
+  margin-top: 0;
+}
+
+.revolution-measure-math {
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: clamp(19px, 1.48vw, 24px);
+  line-height: 1.08;
+}
+
+.revolution-measure-note {
+  margin: clamp(7px, 0.85vh, 10px) 0 0;
+  color: var(--muted);
+  font-size: clamp(13px, 0.96vw, 16px);
+  line-height: 1.32;
+}
+
+.revolution-measure-note math {
+  color: var(--ink);
+  font-family: var(--math);
+  font-size: 1.06em;
+}
+
+.revolution-setting-question {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(18px, 2.2vw, 34px);
+  padding-top: clamp(13px, 1.55vh, 18px);
+  padding-right: 88px;
+  border-top: 2px solid var(--ink);
+}
+
+.revolution-setting-question .meaning-label {
+  flex: 0 0 auto;
+  margin: 0;
+  font-size: clamp(17px, 1.28vw, 21px);
+}
+
+.revolution-setting-question > p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(21px, 1.7vw, 27px);
+}
+
+.revolution-setting-question math {
+  color: var(--ink);
+  font-family: var(--math);
+}
+
+.revolution-setting-question strong {
+  color: var(--ink);
+  font-weight: 750;
+}
+
+@media (max-width: 1080px) {
+  .revolution-setting-content {
+    gap: 18px;
+  }
+
+  .revolution-profile-math,
+  .revolution-space-math {
+    font-size: 19px;
+  }
+
+  .revolution-measure-math {
+    font-size: 18px;
+  }
+
+  .revolution-triple > math {
+    font-size: 24px;
+  }
+
+  .revolution-setting-question > p:last-child {
+    font-size: 21px;
+  }
+}
+
+@media (max-height: 690px) {
+  .revolution-setting-slide .slide-frame {
+    padding-top: 23px;
+    padding-bottom: 26px;
+    gap: 10px;
+  }
+
+  .revolution-setting-content {
+    padding-top: 12px;
+  }
+
+  #revolutionSettingCanvas {
+    height: 235px;
+  }
+
+  .revolution-triple {
+    margin-top: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .revolution-measure {
+    margin-top: 9px;
+  }
+
+  .revolution-setting-question {
+    padding-top: 10px;
+  }
+}
+
+/* ========================================================================== */
+/* Beamer Boadilla unification                                                */
+/* Mirrors \usetheme{Boadilla}, \usecolortheme{default}, professional fonts. */
+/* ========================================================================== */
+
+:root {
+  --paper: #ffffff;
+  --ink: #171717;
+  --muted: #3f3f3f;
+  --blue: #3333b3;
+  --blue-soft: #eeeefa;
+  --gold: #d49a38;
+  --line: #c8c8dc;
+  --math: "Cambria Math", "STIX Two Math", "Latin Modern Math", serif;
+  --sans: "Latin Modern Sans", "CMU Sans Serif", Arial, "Segoe UI", sans-serif;
+}
+
+html,
+body {
+  background: #ffffff;
+  color: var(--ink);
+  font-family: var(--sans);
+}
+
+.slide {
+  background: #ffffff;
+}
+
+.slide .slide-frame {
+  padding: clamp(24px, 2.35vw, 38px) clamp(40px, 4vw, 64px) clamp(42px, 5vh, 52px);
+  gap: clamp(8px, 1.15vh, 13px);
+}
+
+.slide-frame::before {
+  display: none;
+}
+
+.slide-header {
+  max-width: none;
+}
+
+.eyebrow {
+  display: none;
+}
+
+.slide .slide-header h1 {
+  margin: 0;
+  color: var(--blue);
+  font-family: var(--sans);
+  font-size: clamp(27px, 2.15vw, 35px) !important;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+.slide .setup {
+  margin-top: clamp(4px, 0.6vh, 7px);
+  color: var(--ink);
+  font-size: clamp(19px, 1.46vw, 23px) !important;
+  line-height: 1.3;
+}
+
+.slide p,
+.slide li,
+.slide label,
+.slide output,
+.slide button {
+  font-family: var(--sans);
+}
+
+.slide math {
+  font-family: var(--math);
+}
+
+.definition-label,
+.visual-heading h2,
+.family-visual-heading h2,
+.unique-profile-heading h2,
+.dominant-panel-heading h2,
+.revolution-visual-heading .definition-label,
+.revolution-setting-definition > .definition-label {
+  color: var(--blue);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.definition-label {
+  font-size: clamp(18px, 1.3vw, 21px);
+}
+
+.slide-count {
+  display: none;
+}
+
+.beamer-footline {
+  position: absolute;
+  z-index: 30;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: clamp(24px, 3.1vh, 29px);
+  display: grid;
+  grid-template-columns: 0.32fr 0.43fr 0.25fr;
+  color: #1f1f70;
+  font-family: var(--sans);
+  font-size: clamp(10px, 0.86vw, 13px);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.beamer-footline > span {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(10px, 1.2vw, 19px);
+  white-space: nowrap;
+}
+
+.beamer-footline-author,
+.beamer-footline-date {
+  background: #d9d9ee;
+}
+
+.beamer-footline-title {
+  justify-content: center;
+  background: #eeeeF8;
+}
+
+.beamer-footline-date {
+  justify-content: flex-end;
+  font-variant-numeric: tabular-nums;
+}
+
+.deck-arrow {
+  width: clamp(34px, 2.7vw, 43px);
+  height: clamp(34px, 2.7vw, 43px);
+  border-color: rgba(51, 51, 179, 0.28);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--blue);
+  font-family: var(--sans);
+  font-size: clamp(19px, 1.45vw, 24px);
+  box-shadow: none;
+}
+
+.deck-arrow:focus-visible {
+  outline-color: rgba(51, 51, 179, 0.32);
+}
+
+/* Text-only left/right compositions become top/bottom. */
+
+.definition-block {
+  align-self: start;
+  align-content: start;
+  width: 100%;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1px auto;
+  align-items: start;
+  gap: clamp(8px, 1vh, 12px);
+  padding: clamp(12px, 1.5vh, 18px) clamp(16px, 1.8vw, 28px);
+  border-radius: 7px;
+  background: var(--blue-soft);
+}
+
+.definition-block .rule {
+  width: 100%;
+  height: 1px;
+  background: var(--line);
+}
+
+.definition-block .definition-label {
+  margin-bottom: clamp(5px, 0.65vh, 8px);
+  font-size: clamp(18px, 1.28vw, 21px);
+}
+
+.neighborhood-math {
+  font-size: clamp(27px, 2.05vw, 33px);
+}
+
+.concentration-math {
+  font-size: clamp(24px, 1.84vw, 30px);
+}
+
+.meaning,
+.levy-meaning,
+.extension-question,
+.revolution-setting-question {
+  padding: clamp(8px, 1vh, 12px) clamp(12px, 1.3vw, 20px);
+  border: 0;
+  border-radius: 6px;
+  background: #f4f4fb;
+}
+
+.meaning::before {
+  display: none;
+}
+
+.meaning-label {
+  color: var(--blue);
+  font-size: clamp(11px, 0.86vw, 14px);
+  letter-spacing: 0.08em;
+}
+
+.meaning-text,
+.levy-meaning p,
+.extension-question > p:last-child,
+.revolution-setting-question > p:last-child {
+  color: var(--ink);
+  font-size: clamp(18px, 1.32vw, 21px);
+}
+
+.lipschitz-slide {
+  --lipschitz-body-size: clamp(17px, 1.2vw, 20px);
+  --lipschitz-math-size: clamp(19px, 1.38vw, 23px);
+  --lipschitz-bottom-size: clamp(18px, 1.3vw, 21px);
+}
+
+.lipschitz-content {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto auto;
+  gap: clamp(6px, 0.8vh, 9px);
+  padding-top: 0;
+  border-top: 0;
+  align-content: start;
+}
+
+.lipschitz-equivalence,
+.ledoux-result {
+  align-self: stretch;
+  padding: clamp(7px, 0.85vh, 10px) clamp(12px, 1.3vw, 20px);
+  border-radius: 6px;
+  background: #f5f5fb;
+}
+
+.lipschitz-equivalence {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.ledoux-result {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.lipschitz-rule {
+  display: none;
+}
+
+.lipschitz-equivalence .definition-label,
+.ledoux-result .definition-label {
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+.equivalence-intro,
+.consequence-label,
+.equivalence-conclusion,
+.ledoux-assumption,
+.ledoux-source {
+  text-align: left;
+}
+
+.lipschitz-definition-math,
+.equivalence-math,
+.ledoux-math {
+  margin-top: 3px;
+}
+
+.consequence-label,
+.equivalence-conclusion,
+.ledoux-source {
+  margin-top: 4px;
+}
+
+.ledoux-assumption {
+  margin-bottom: 4px;
+}
+
+.sphere-conclusion {
+  grid-column: 1;
+  grid-row: 3;
+  padding: clamp(7px, 0.8vh, 10px) 14px;
+  border-radius: 6px;
+  background: var(--blue-soft);
+}
+
+.main-theorem-content {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto minmax(0, 1fr);
+  gap: clamp(5px, 0.7vh, 8px);
+  padding-top: 0;
+  border-top: 0;
+}
+
+.theorem-assumptions,
+.theorem-unique {
+  align-self: stretch;
+  padding: clamp(6px, 0.75vh, 9px) clamp(10px, 1.15vw, 18px);
+  border-radius: 6px;
+  background: #f6f6fb;
+  text-align: left;
+}
+
+.theorem-assumptions {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.theorem-unique {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.main-theorem-rule {
+  display: none;
+}
+
+.theorem-assumptions .definition-label,
+.theorem-unique .definition-label {
+  margin-bottom: 3px;
+  font-size: clamp(14px, 1vw, 17px);
+}
+
+.theorem-maxima-math,
+.theorem-local-math,
+.theorem-unique-math {
+  font-size: clamp(16px, 1.14vw, 19px);
+  text-align: left;
+}
+
+.theorem-copy,
+.theorem-order-note {
+  margin: 3px 0;
+  font-size: clamp(15px, 1.02vw, 17px);
+}
+
+.theorem-unique-math mtable {
+  text-align: left;
+}
+
+.theorem-remark {
+  margin-top: 4px;
+  padding: 5px 10px;
+  border-left: 4px solid var(--blue);
+  background: #eeeeF8;
+}
+
+.theorem-remark-label {
+  margin-bottom: 2px;
+  color: var(--blue);
+  font-size: clamp(10px, 0.72vw, 12px);
+  letter-spacing: 0.08em;
+}
+
+.theorem-criterion {
+  font-size: clamp(16px, 1.1vw, 18px);
+  text-align: left;
+}
+
+.theorem-remark > p:last-child {
+  margin-top: 2px;
+  font-size: clamp(15px, 1vw, 17px);
+}
+
+.theorem-bound {
+  grid-column: 1;
+  grid-row: 3;
+  padding: clamp(7px, 0.85vh, 10px) clamp(12px, 1.3vw, 20px);
+  gap: 4px;
+  border-radius: 6px;
+  background: var(--blue-soft);
+}
+
+.theorem-bound-heading {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.theorem-bound-heading .definition-label {
+  font-size: clamp(14px, 1vw, 17px);
+}
+
+.theorem-bound-heading > p:last-child {
+  font-size: clamp(14px, 0.94vw, 16px);
+}
+
+.theorem-bound-math {
+  font-size: clamp(18px, 1.25vw, 21px);
+}
+
+.theorem-limit {
+  padding-top: 4px;
+  font-size: clamp(15px, 1.06vw, 18px);
+}
+
+.flow-arrow,
+.conclusion-arrow,
+.theorem-limit-arrow {
+  color: var(--blue);
+}
+
+/* Keep image/canvas comparisons side-by-side, as in the original HTML. */
+.sphere-demo,
+.family-demo,
+.unique-maximum-content,
+.revolution-setting-content {
+  border-top-color: var(--line);
+}
+
+.sphere-demo,
+.family-demo,
+.unique-maximum-content,
+.dominant-maxima-content,
+.revolution-setting-content {
+  padding-top: clamp(7px, 0.85vh, 10px);
+}
+
+.family-header .family-setting-math,
+.sphere-setting-math,
+.dominant-maxima-header .dominant-profile-equation,
+.dominant-maxima-header .setup {
+  color: var(--ink);
+}
+
+.dominant-maxima-header .dominant-profile-equation {
+  margin-top: 4px;
+  font-size: clamp(20px, 1.48vw, 24px);
+}
+
+.dominant-maxima-header .setup {
+  margin-top: 2px;
+  font-size: clamp(18px, 1.3vw, 21px) !important;
+}
+
+.family-slider,
+#radiusSlider {
+  --track: #cfcfe2;
+  --fill: var(--blue);
+}
+
+@media (max-width: 1080px) {
+  .slide .slide-frame {
+    padding-right: 42px;
+    padding-left: 42px;
+  }
+
+  .beamer-footline {
+    grid-template-columns: 0.28fr 0.43fr 0.29fr;
+  }
+
+  .concentration-math {
+    font-size: 22px;
+  }
+
+  .theorem-bound-math {
+    font-size: 17px;
+  }
+}
+
+@media (max-height: 690px) {
+  .slide .slide-frame {
+    padding-top: 18px;
+    padding-bottom: 35px;
+    gap: 5px;
+  }
+
+  .beamer-footline {
+    height: 23px;
+  }
+
+  .definition-block,
+  .lipschitz-equivalence,
+  .ledoux-result,
+  .theorem-assumptions,
+  .theorem-unique,
+  .theorem-bound {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
+/* Final large-type override: intentionally last so legacy per-slide rules
+   cannot shrink audience-facing copy after the Beamer theme is applied. */
+
+/* Projector-safe minimums for every remaining caption, legend and control. */
+.slide[data-slide="1"] .slide-header .setup {
+  margin-top: clamp(15px, 1.9vh, 20px);
+}
+
+.slide[data-slide="1"] .slide-frame .definition-block {
+  height: 100%;
+  min-height: 0;
+  align-self: stretch;
+  align-content: stretch;
+  align-items: stretch;
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(16px, 2vh, 22px);
+  padding: 0;
+  background: transparent;
+}
+
+.slide[data-slide="1"] .definition-block .rule {
+  display: none;
+}
+
+.slide[data-slide="1"] .neighborhood-definition,
+.slide[data-slide="1"] .concentration-definition {
+  display: grid;
+  align-content: center;
+  padding: clamp(18px, 2.2vh, 24px) clamp(24px, 2.2vw, 36px);
+  border-radius: 7px;
+  background: var(--blue-soft);
+}
+
+.slide.dominant-maxima-slide .dominant-maxima-header .setup {
+  font-size: clamp(24px, 1.82vw, 29px) !important;
+}
+
+.slide .meaning-label {
+  font-size: clamp(18px, 1.32vw, 21px);
+}
+
+.sphere-slide .visual-heading h2,
+.levy-example-slide .family-visual-heading h2,
+.product-example-slide .family-visual-heading h2,
+.unique-maximum-slide .unique-profile-heading h2,
+.dominant-maxima-slide .dominant-panel-heading h2 {
+  font-size: clamp(24px, 1.78vw, 29px);
+}
+
+.levy-example-slide .family-visual-heading p,
+.product-example-slide .family-visual-heading p,
+.levy-example-slide .family-limit-note,
+.product-example-slide .family-limit-note {
+  font-size: clamp(22px, 1.55vw, 25px);
+  line-height: 1.22;
+}
+
+.sphere-slide .formula-justification {
+  font-size: clamp(18px, 1.32vw, 21px);
+}
+
+.sphere-slide .exact-formula {
+  transform: translateY(clamp(12px, 1.7vh, 16px));
+}
+
+.sphere-slide .radius-readout label,
+.levy-example-slide .family-control-readout label,
+.product-example-slide .family-control-readout label {
+  font-size: clamp(18px, 1.35vw, 22px);
+}
+
+.sphere-slide .radius-readout output,
+.levy-example-slide .family-control-readout output,
+.product-example-slide .family-control-readout output {
+  font-size: clamp(24px, 1.78vw, 29px);
+}
+
+.sphere-slide .slider-ticks,
+.levy-example-slide .family-slider-ticks,
+.product-example-slide .family-slider-ticks,
+.unique-maximum-slide .family-slider-ticks,
+.dominant-maxima-slide .family-slider-ticks {
+  font-size: clamp(19px, 1.35vw, 22px);
+}
+
+.levy-example-slide .family-dimension-badge,
+.levy-example-slide .family-alpha-badge,
+.product-example-slide .family-dimension-badge,
+.product-example-slide .product-mass-badge {
+  font-size: clamp(29px, 2.15vw, 35px);
+}
+
+.levy-example-slide .family-legend,
+.product-example-slide .family-legend {
+  font-size: clamp(24px, 1.82vw, 29px);
+}
+
+.lipschitz-slide {
+  --lipschitz-body-size: clamp(23px, 1.68vw, 27px);
+  --lipschitz-math-size: clamp(26px, 1.95vw, 31px);
+  --lipschitz-bottom-size: clamp(24px, 1.8vw, 29px);
+}
+
+.lipschitz-slide .ledoux-source {
+  font-size: clamp(18px, 1.22vw, 20px);
+}
+
+.revolution-setting-slide .revolution-visual-heading > span {
+  font-size: clamp(11px, 0.82vw, 14px);
+}
+
+.revolution-setting-slide .revolution-setting-visual figcaption,
+.revolution-setting-slide .revolution-triple p,
+.revolution-setting-slide .revolution-measure-note {
+  font-size: clamp(21px, 1.55vw, 25px);
+}
+
+.revolution-setting-slide .revolution-setting-label {
+  font-size: clamp(21px, 1.58vw, 25px);
+}
+
+.main-theorem-slide .slide-header h1 {
+  font-size: clamp(29px, 2.3vw, 37px) !important;
+}
+
+.main-theorem-slide .setup {
+  font-size: clamp(24px, 1.85vw, 30px) !important;
+}
+
+.main-theorem-slide .theorem-assumptions .definition-label,
+.main-theorem-slide .theorem-unique .definition-label,
+.main-theorem-slide .theorem-bound-heading .definition-label {
+  font-size: clamp(23px, 1.72vw, 28px);
+}
+
+.main-theorem-slide .theorem-maxima-math,
+.main-theorem-slide .theorem-local-math,
+.main-theorem-slide .theorem-unique-math {
+  font-size: clamp(24px, 1.82vw, 29px);
+}
+
+.main-theorem-slide .theorem-copy,
+.main-theorem-slide .theorem-order-note,
+.main-theorem-slide .theorem-bound-heading > p:last-child,
+.main-theorem-slide .theorem-limit {
+  font-size: clamp(22px, 1.58vw, 25px);
+}
+
+.main-theorem-slide .theorem-bound-math {
+  font-size: clamp(25px, 1.88vw, 30px);
+}
+
+.unique-maximum-slide .unique-domain-line,
+.unique-maximum-slide .unique-outside-readout,
+.dominant-maxima-slide .unique-outside-readout,
+.unique-maximum-slide .unique-control-label,
+.dominant-maxima-slide .unique-control-label {
+  font-size: clamp(22px, 1.62vw, 26px);
+}
+
+.unique-maximum-slide .unique-control-label output,
+.dominant-maxima-slide .unique-control-label output {
+  font-size: clamp(24px, 1.78vw, 29px);
+}
+
+.dominant-maxima-slide .halfset-choice button {
+  font-size: clamp(22px, 1.62vw, 26px) !important;
+}
+
+.levy-example-slide .family-control-group,
+.product-example-slide .family-control-group {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  gap: 2px;
+}
+
+.levy-example-slide .family-control-readout,
+.product-example-slide .family-control-readout {
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.levy-example-slide .family-control-readout label,
+.product-example-slide .family-control-readout label {
+  white-space: nowrap;
+}
+
+.levy-example-slide .family-slider-area,
+.product-example-slide .family-slider-area {
+  padding-top: 1px;
+}
+
+/* Fixed-size figures sit in the vertical center of the remaining stage. */
+.sphere-side,
+.curve-side,
+.family-visual-side,
+.dominant-single-panel,
+.revolution-setting-visual {
+  width: 100%;
+  align-self: center;
+}
+
+/* Keep all copy and charts fixed; lower only the point-cloud images. */
+.levy-example-slide .family-cloud-canvas,
+.product-example-slide .family-cloud-canvas {
+  transform: translateY(clamp(18px, 2.3vh, 22px));
+}
+
+.levy-example-slide .family-legend,
+.product-example-slide .family-legend {
+  transform: translateY(clamp(28px, 3.6vh, 34px));
+}
+
+.levy-example-slide .family-curve-canvas,
+.product-example-slide .family-curve-canvas {
+  transform: translateY(clamp(8px, 1.25vh, 12px));
+}
+
+.levy-example-slide .family-limit-note,
+.product-example-slide .family-limit-note {
+  transform: translateY(clamp(18px, 2.45vh, 23px));
+}
+
+.slide .slide-frame {
+  padding: clamp(22px, 2vw, 32px) clamp(46px, 3.55vw, 57px) clamp(38px, 4.6vh, 46px);
+  gap: clamp(5px, 0.72vh, 8px);
+}
+
+.slide .setup {
+  margin-top: clamp(2px, 0.35vh, 4px);
+  font-size: var(--body-large) !important;
+  line-height: 1.22;
+}
+
+.definition-label,
+.visual-heading h2,
+.family-visual-heading h2,
+.unique-profile-heading h2,
+.dominant-panel-heading h2,
+.revolution-visual-heading .definition-label,
+.revolution-setting-definition > .definition-label {
+  font-size: clamp(21px, 1.55vw, 25px);
+  line-height: 1.15;
+}
+
+.meaning-label {
+  font-size: clamp(14px, 1.05vw, 17px);
+}
+
+.meaning-text,
+.levy-meaning p,
+.extension-question > p:last-child,
+.revolution-setting-question > p:last-child {
+  font-size: var(--body-large);
+  line-height: 1.24;
+}
+
+.slide[data-slide="1"] .definition-block {
+  min-height: clamp(355px, 50vh, 460px);
+  align-content: space-evenly;
+  padding: clamp(16px, 2vh, 22px) clamp(22px, 2vw, 32px);
+  gap: clamp(9px, 1.1vh, 13px);
+}
+
+.slide[data-slide="1"] .definition-block .definition-label {
+  margin-bottom: clamp(8px, 0.9vh, 11px);
+  font-size: clamp(25px, 1.9vw, 30px);
+  line-height: 1.22;
+}
+
+.slide[data-slide="1"] .neighborhood-math {
+  font-size: clamp(34px, 2.55vw, 41px);
+}
+
+.slide[data-slide="1"] .concentration-math {
+  font-size: clamp(30px, 2.3vw, 37px);
+}
+
+.slide[data-slide="1"] .meaning {
+  padding: clamp(10px, 1.25vh, 14px) clamp(16px, 1.5vw, 24px);
+}
+
+.sphere-setting-math,
+.family-setting-math {
+  font-size: var(--math-medium);
+}
+
+.visual-heading p,
+.family-limit-note {
+  font-size: var(--body-small);
+}
+
+.formula-justification,
+.sphere-setting,
+.slider-ticks,
+.family-slider-ticks {
+  font-size: clamp(14px, 1vw, 17px);
+}
+
+.radius-readout label,
+.family-control-readout label {
+  font-size: clamp(15px, 1.08vw, 18px);
+}
+
+.radius-readout output,
+.family-control-readout output,
+.product-radius-readout output {
+  font-size: clamp(21px, 1.6vw, 26px);
+}
+
+.family-controls,
+.radius-control {
+  padding-top: clamp(7px, 0.85vh, 10px);
+}
+
+.levy-label {
+  font-size: clamp(21px, 1.55vw, 25px);
+}
+
+.levy-quantifier {
+  font-size: var(--body-large);
+}
+
+.levy-slide .levy-header .setup {
+  font-size: clamp(30px, 2.15vw, 35px) !important;
+  line-height: 1.16;
+}
+
+.lipschitz-slide {
+  --lipschitz-body-size: clamp(25px, 1.82vw, 29px);
+  --lipschitz-math-size: clamp(29px, 2.12vw, 34px);
+  --lipschitz-bottom-size: clamp(26px, 1.92vw, 31px);
+}
+
+.lipschitz-content {
+  height: 100%;
+  grid-template-rows: minmax(0, 1.2fr) minmax(0, 0.82fr) auto;
+  gap: clamp(5px, 0.65vh, 7px);
+}
+
+.lipschitz-equivalence,
+.ledoux-result {
+  display: grid;
+  align-content: center;
+  padding: clamp(8px, 1vh, 12px) clamp(18px, 1.5vw, 24px);
+}
+
+.lipschitz-equivalence .definition-label,
+.ledoux-result .definition-label {
+  font-size: clamp(25px, 1.78vw, 29px);
+}
+
+.sphere-conclusion {
+  padding: clamp(10px, 1.2vh, 14px) 18px;
+}
+
+.revolution-setting-label {
+  font-size: clamp(18px, 1.35vw, 22px);
+}
+
+.revolution-profile-math,
+.revolution-space-math,
+.revolution-measure-math {
+  font-size: clamp(22px, 1.68vw, 27px);
+}
+
+.revolution-triple p,
+.revolution-measure-note,
+.revolution-setting-visual figcaption {
+  font-size: clamp(16px, 1.18vw, 19px);
+}
+
+.revolution-triple > math {
+  font-size: clamp(27px, 2.05vw, 33px);
+}
+
+.main-theorem-content {
+  gap: clamp(4px, 0.52vh, 6px);
+}
+
+.main-theorem-slide .main-theorem-content {
+  grid-template-rows: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1.7fr);
+}
+
+.main-theorem-slide .theorem-assumptions,
+.main-theorem-slide .theorem-unique {
+  display: grid;
+  align-content: center;
+}
+
+.theorem-assumptions,
+.theorem-unique {
+  padding: clamp(4px, 0.55vh, 6px) clamp(13px, 1.2vw, 19px);
+}
+
+.theorem-assumptions .definition-label,
+.theorem-unique .definition-label,
+.theorem-bound-heading .definition-label {
+  font-size: clamp(19px, 1.38vw, 23px);
+}
+
+.theorem-maxima-math,
+.theorem-local-math,
+.theorem-unique-math,
+.theorem-criterion {
+  font-size: clamp(21px, 1.55vw, 25px);
+  line-height: 1.06;
+}
+
+.theorem-copy,
+.theorem-order-note,
+.theorem-remark > p:last-child,
+.theorem-bound-heading > p:last-child,
+.theorem-limit {
+  font-size: clamp(18px, 1.28vw, 21px);
+  line-height: 1.15;
+}
+
+.theorem-remark-label {
+  font-size: clamp(14px, 1vw, 17px);
+}
+
+.theorem-remark {
+  margin-top: 3px;
+  padding: 5px 12px;
+}
+
+.theorem-bound {
+  padding: clamp(6px, 0.72vh, 8px) clamp(16px, 1.5vw, 24px);
+  gap: 2px;
+}
+
+.theorem-bound-math {
+  font-size: clamp(21px, 1.58vw, 25px);
+  line-height: 0.98;
+}
+
+.theorem-limit {
+  padding-top: 2px;
+}
+
+.theorem-interpretation {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(18px, 2.2vw, 34px);
+  padding: clamp(8px, 1vh, 11px) clamp(18px, 1.7vw, 27px);
+  border-radius: 6px;
+  background: #f5f5fb;
+}
+
+.theorem-interpretation .meaning-label {
+  flex: 0 0 auto;
+  margin: 0;
+  font-size: clamp(18px, 1.32vw, 21px);
+}
+
+.theorem-interpretation > p:last-child {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(21px, 1.55vw, 25px);
+  line-height: 1.18;
+}
+
+.theorem-interpretation math {
+  color: var(--ink);
+  font-family: var(--math);
+}
+
+.unique-profile-heading > div > math {
+  font-size: clamp(22px, 1.68vw, 27px);
+}
+
+.unique-domain-line,
+.unique-outside-readout,
+.unique-control-label {
+  font-size: clamp(16px, 1.18vw, 19px);
+}
+
+.unique-control-label output,
+.unique-maximum-limit math {
+  font-size: clamp(21px, 1.58vw, 25px);
+}
+
+.unique-maximum-limit strong {
+  font-size: clamp(20px, 1.48vw, 24px);
+}
+
+.dominant-maxima-header .dominant-profile-equation {
+  margin-top: 2px;
+  font-size: clamp(25px, 1.95vw, 31px);
+  line-height: 1.08;
+}
+
+.dominant-maxima-header .setup {
+  margin-top: 1px;
+  font-size: clamp(22px, 1.68vw, 27px) !important;
+  line-height: 1.12;
+}
+
+.dominant-panel-heading h2 {
+  font-size: clamp(22px, 1.65vw, 27px);
+}
+
+.dominant-set-definition,
+.halfset-choice button {
+  font-size: clamp(19px, 1.42vw, 23px) !important;
+}
+
+.dominant-panel-heading > div > p,
+.dominant-share-readout,
+.dominant-order-ratio {
+  font-size: clamp(16px, 1.18vw, 19px);
+}
+
+.dominant-share-readout output {
+  font-size: clamp(23px, 1.72vw, 28px);
+}
+
+.dominant-maxima-content {
+  padding-top: clamp(6px, 0.72vh, 8px);
+}
+
+.dominant-maxima-controls .unique-maximum-legend {
+  font-size: clamp(22px, 1.65vw, 27px);
+}
+
+@media (max-width: 1080px) {
+  .slide .slide-frame {
+    padding-right: 38px;
+    padding-left: 38px;
+  }
+
+  .slide[data-slide="1"] .concentration-math {
+    font-size: 27px;
+  }
+
+  .theorem-maxima-math,
+  .theorem-local-math,
+  .theorem-unique-math,
+  .theorem-criterion,
+  .theorem-bound-math,
+  .revolution-profile-math,
+  .revolution-space-math,
+  .revolution-measure-math {
+    font-size: 21px;
+  }
+
+  .dominant-maxima-header .dominant-profile-equation {
+    font-size: 24px;
+  }
+}
+
+@media (max-height: 690px) {
+  .slide .slide-frame {
+    padding-top: 14px;
+    padding-bottom: 33px;
+    gap: 3px;
+  }
+
+  .slide[data-slide="1"] .definition-block {
+    min-height: 360px;
+  }
+
+  .lipschitz-equivalence,
+  .ledoux-result,
+  .theorem-assumptions,
+  .theorem-unique,
+  .theorem-bound {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+}

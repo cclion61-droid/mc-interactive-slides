@@ -1,0 +1,1043 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Measure Concentration — Interactive Slides</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="custom.css">
+</head>
+<body>
+  <main class="deck" id="deck" aria-label="Measure concentration presentation">
+    <section class="slide is-active" data-slide="1" aria-labelledby="slide-1-title">
+      <div class="slide-frame">
+        <header class="slide-header">
+          <p class="eyebrow">MEASURE CONCENTRATION <span>·</span> 01</p>
+          <h1 id="slide-1-title">Concentration function</h1>
+          <p class="setup">
+            An <em>mm-space</em> is a compact metric space
+            <math aria-label="X d"><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>d</mi><mo stretchy="false">)</mo></mrow></math>
+            equipped with a Borel probability measure
+            <math aria-label="mu"><mi>μ</mi></math>.
+          </p>
+        </header>
+
+        <div class="definition-block">
+          <div class="neighborhood-definition">
+            <p class="definition-label">For <math><mrow><mi>A</mi><mo>∈</mo><mi mathvariant="script">B</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></math> and <math><mrow><mi>r</mi><mo>&gt;</mo><mn>0</mn></mrow></math>, define the open neighborhood</p>
+            <math class="display-math neighborhood-math" display="block" aria-label="A sub r equals the set of x in X such that d of x A is less than r">
+              <mrow>
+                <msub><mi>A</mi><mi>r</mi></msub><mo>:=</mo><mo>{</mo><mi>x</mi><mo>∈</mo><mi>X</mi><mo>:</mo>
+                <mi>d</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo><mo>&lt;</mo><mi>r</mi><mo>}</mo><mo>.</mo>
+              </mrow>
+            </math>
+          </div>
+
+          <div class="rule" aria-hidden="true"></div>
+
+          <div class="concentration-definition">
+            <p class="definition-label">For <math><mrow><mi>θ</mi><mo>∈</mo><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>]</mo></mrow></math>, define</p>
+            <math class="display-math concentration-math" display="block" aria-label="alpha X of r theta equals the supremum over Borel A with mu A at least theta of one minus mu A r; alpha X of r equals alpha X of r one half">
+              <mrow>
+                <msub><mi>α</mi><mi>X</mi></msub><mo stretchy="false">(</mo><mi>r</mi><mo>;</mo><mi>θ</mi><mo stretchy="false">)</mo><mo>:=</mo>
+                <munder>
+                  <mo>sup</mo>
+                  <mrow>
+                    <mi>A</mi><mo>∈</mo><mi mathvariant="script">B</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo>
+                    <mspace width="0.2em"></mspace><mi>μ</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>≥</mo><mi>θ</mi>
+                  </mrow>
+                </munder>
+                <mo>{</mo><mn>1</mn><mo>−</mo><mi>μ</mi><mo stretchy="false">(</mo><msub><mi>A</mi><mi>r</mi></msub><mo stretchy="false">)</mo><mo>}</mo><mo>,</mo>
+                <mspace width="0.7em"></mspace>
+                <msub><mi>α</mi><mi>X</mi></msub><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo><mo>:=</mo>
+                <msub><mi>α</mi><mi>X</mi></msub><mo stretchy="false">(</mo><mi>r</mi><mo>;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo stretchy="false">)</mo><mo>.</mo>
+              </mrow>
+            </math>
+          </div>
+        </div>
+
+        <div class="slide-count" aria-label="Slide 1 of 12">01 <span>/</span> 12</div>
+      </div>
+    </section>
+
+    <section class="slide sphere-slide" data-slide="2" aria-labelledby="slide-2-title" aria-hidden="true">
+      <div class="slide-frame">
+        <header class="slide-header sphere-header">
+          <p class="eyebrow">MEASURE CONCENTRATION <span>·</span> 02</p>
+          <h1 id="slide-2-title">
+            Concentration function on
+            <math class="title-math" aria-label="S squared"><msup><mi>S</mi><mn>2</mn></msup></math>
+          </h1>
+          <div class="sphere-setting compact-sphere-setting">
+            <math class="sphere-setting-math" aria-label="X d mu equals S squared, geodesic distance, normalized surface measure sigma two; A is the hemisphere x one greater than or equal to zero">
+              <mrow>
+                <mo>(</mo><mi>X</mi><mo>,</mo><mi>d</mi><mo>,</mo><mi>μ</mi><mo>)</mo>
+                <mo>=</mo>
+                <mo>(</mo><msup><mi>S</mi><mn>2</mn></msup><mo>,</mo><msub><mi>d</mi><mi>geo</mi></msub><mo>,</mo><msub><mi>σ</mi><mn>2</mn></msub><mo>)</mo>
+                <mo>,</mo><mspace width="1em"></mspace>
+                <mi>A</mi><mo>=</mo><mo>{</mo><mi>x</mi><mo>∈</mo><msup><mi>S</mi><mn>2</mn></msup>
+                <mo>:</mo><msub><mi>x</mi><mn>1</mn></msub><mo>≥</mo><mn>0</mn><mo>}</mo><mo>.</mo>
+              </mrow>
+            </math>
+          </div>
+        </header>
+
+        <div class="sphere-demo">
+          <section class="sphere-side" aria-labelledby="sphere-view-title">
+            <div class="visual-heading">
+              <h2 id="sphere-view-title">Surface decomposition</h2>
+            </div>
+            <canvas id="sphereCanvas" class="demo-canvas sphere-canvas" role="img" aria-label="Colored sphere showing A, A sub r minus A, and the complement of A sub r"></canvas>
+            <div class="region-legend" aria-label="Sphere color legend">
+              <span><i class="legend-swatch swatch-blue"></i><math><mi>A</mi></math></span>
+              <span><i class="legend-swatch swatch-gold"></i><math><mrow><msub><mi>A</mi><mi>r</mi></msub><mo>∖</mo><mi>A</mi></mrow></math></span>
+              <span><i class="legend-swatch swatch-red"></i><math><mrow><msup><mi>S</mi><mn>2</mn></msup><mo>∖</mo><msub><mi>A</mi><mi>r</mi></msub></mrow></math></span>
+            </div>
+          </section>
+
+          <div class="demo-rule" aria-hidden="true"></div>
+
+          <section class="curve-side" aria-labelledby="curve-view-title">
+            <div class="visual-heading curve-heading">
+              <div>
+                <h2 id="curve-view-title">Concentration profile</h2>
+              </div>
+              <output class="alpha-readout" id="alphaValue" for="radiusSlider" aria-live="polite">0.329</output>
+            </div>
+            <canvas id="curveCanvas" class="demo-canvas curve-canvas" role="img" aria-label="Graph of the concentration function of S squared"></canvas>
+            <div class="exact-formula" aria-label="alpha X of r equals one minus sigma two of A sub r">
+              <math>
+                <mrow>
+                  <msub><mi>α</mi><mi>X</mi></msub>
+                  <mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo>
+                  <mo>=</mo>
+                  <mn>1</mn><mo>−</mo><msub><mi>σ</mi><mn>2</mn></msub>
+                  <mo stretchy="false">(</mo><msub><mi>A</mi><mi>r</mi></msub><mo stretchy="false">)</mo><mo>.</mo>
+                </mrow>
+              </math>
+            </div>
+          </section>
+        </div>
+
+        <footer class="radius-control">
+          <div class="radius-readout">
+            <label for="radiusSlider">Radius</label>
+            <output id="radiusValue" for="radiusSlider">r = 0.350</output>
+          </div>
+          <div class="slider-area">
+            <input id="radiusSlider" type="range" min="0" max="3.1415926536" step="0.001" value="0.350" aria-label="Neighborhood radius r">
+            <div class="slider-ticks" aria-hidden="true">
+              <span>0</span>
+              <span>π/2</span>
+              <span>π</span>
+            </div>
+          </div>
+        </footer>
+
+        <div class="slide-count" aria-label="Slide 2 of 12">02 <span>/</span> 12</div>
+      </div>
+    </section>
+
+    <section class="slide levy-slide" data-slide="3" aria-labelledby="slide-3-title" aria-hidden="true">
+      <div class="slide-frame">
+        <header class="slide-header levy-header">
+          <p class="eyebrow">MEASURE CONCENTRATION <span>·</span> 03</p>
+          <h1 id="slide-3-title">Lévy family</h1>
+          <p class="setup">
+            Let
+            <math aria-label="the sequence of X sub n, d sub n, mu sub n for n greater than or equal to one">
+              <mrow>
+                <msub>
+                  <mrow><mo>{</mo><mo>(</mo><msub><mi>X</mi><mi>n</mi></msub><mo>,</mo><msub><mi>d</mi><mi>n</mi></msub><mo>,</mo><msub><mi>μ</mi><mi>n</mi></msub><mo>)</mo><mo>}</mo></mrow>
+                  <mrow><mi>n</mi><mo>≥</mo><mn>1</mn></mrow>
+                </msub>
+              </mrow>
+            </math>
+            be a sequence of <em>mm-spaces</em>.
+          </p>
+        </header>
+
+        <div class="levy-definition-block">
+          <div class="levy-equivalence">
+            <p class="levy-equivalence-intro">The following statements are equivalent:</p>
+            <ol class="levy-equivalence-list">
+              <li>
+                <math aria-label="the sequence of X sub n, d sub n, mu sub n is a Levy family">
+                  <mrow>
+                    <msub>
+                      <mrow><mo>{</mo><mo>(</mo><msub><mi>X</mi><mi>n</mi></msub><mo>,</mo><msub><mi>d</mi><mi>n</mi></msub><mo>,</mo><msub><mi>μ</mi><mi>n</mi></msub><mo>)</mo><mo>}</mo></mrow>
+                      <mrow><mi>n</mi><mo>≥</mo><mn>1</mn></mrow>
+                    </msub>
+                    <mspace width="0.3em"></mspace><mtext>is a Lévy family.</mtext>
+                  </mrow>
+                </math>
+              </li>
+              <li>
+                <math aria-label="alpha X sub n of r tends to zero for every fixed positive r">
+                  <mrow>
+                    <msub><mi>α</mi><msub><mi>X</mi><mi>n</mi></msub></msub><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo><mo>→</mo><mn>0</mn>
+                    <mspace width="0.3em"></mspace><mtext>for every fixed</mtext><mspace width="0.2em"></mspace><mi>r</mi><mo>&gt;</mo><mn>0</mn><mo>.</mo>
+                  </mrow>
+                </math>
+              </li>
+              <li>
+                <math aria-label="the sequence of X sub n, d sub n, mu sub n exhibits the measure concentration phenomenon">
+                  <mrow>
+                    <msub>
+                      <mrow><mo>{</mo><mo>(</mo><msub><mi>X</mi><mi>n</mi></msub><mo>,</mo><msub><mi>d</mi><mi>n</mi></msub><mo>,</mo><msub><mi>μ</mi><mi>n</mi></msub><mo>)</mo><mo>}</mo></mrow>
+                      <mrow><mi>n</mi><mo>≥</mo><mn>1</mn></mrow>
+                    </msub>
+                    <mspace width="0.3em"></mspace><mtext>exhibits the measure concentration phenomenon.</mtext>
+                  </mrow>
+                </math>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="slide-count" aria-label="Slide 3 of 12">03 <span>/</span> 12</div>
+      </div>
+    </section>
+
+    <section class="slide levy-example-slide" data-slide="4" aria-labelledby="slide-4-title" aria-hidden="true">
+      <div class="slide-frame">
+        <header class="slide-header family-header">
+          <p class="eyebrow">MEASURE CONCENTRATION <span>·</span> 04</p>
+          <h1 id="slide-4-title">An example with measure concentration</h1>
+          <math class="family-setting-math" aria-label="X sub n, d sub n, mu sub n equals S to the n, geodesic distance, normalized surface measure sigma sub n">
+            <mrow>
+              <mo>(</mo><msub><mi>X</mi><mi>n</mi></msub><mo>,</mo><msub><mi>d</mi><mi>n</mi></msub><mo>,</mo><msub><mi>μ</mi><mi>n</mi></msub><mo>)</mo>
+              <mo>=</mo>
+              <mo>(</mo><msup><mi>S</mi><mi>n</mi></msup><mo>,</mo><msub><mi>d</mi><mi>geo</mi></msub><mo>,</mo><msub><mi>σ</mi><mi>n</mi></msub><mo>)</mo><mo>.</mo>
+            </mrow>
+          </math>
+        </header>
+
+        <div class="family-demo">
+          <section class="family-visual-side" aria-labelledby="family-cloud-title">
+            <div class="visual-heading family-visual-heading">
+              <div>
+                <h2 id="family-cloud-title">Projected point cloud</h2>
+                <p>
+                  Uniformly sample points on
+                  <math><msup><mi>S</mi><mi>n</mi></msup></math>,
+                  then project them onto
+                  <math><msup><mi>S</mi><mn>2</mn></msup></math>.
+                </p>
+              </div>
+              <output class="family-dimension-badge" id="familyDimensionBadge" for="dimensionSlider">n = 2</output>
+            </div>
+            <canvas id="familyCloudCanvas" class="demo-canvas family-cloud-canvas" role="img" aria-label="Draggable three-dimensional point cloud sampled uniformly from S to the n and projected onto S squared"></canvas>
+            <p class="family-projection-caption">projection onto <math><msup><mi>S</mi><mn>2</mn></msup></math></p>
+            <div class="region-legend family-legend" aria-label="Point cloud color legend">
+              <span><i class="legend-swatch swatch-blue"></i><math><msub><mi>A</mi><mi>n</mi></msub></math></span>
+              <span><i class="legend-swatch swatch-gold"></i><math><mrow><msub><mi>A</mi><mrow><mi>n</mi><mo>,</mo><mi>r</mi></mrow></msub><mo>∖</mo><msub><mi>A</mi><mi>n</mi></msub></mrow></math></span>
+              <span><i class="legend-swatch swatch-red"></i><math><mrow><msup><mi>S</mi><mi>n</mi></msup><mo>∖</mo><msub><mi>A</mi><mrow><mi>n</mi><mo>,</mo><mi>r</mi></mrow></msub></mrow></math></span>
+            </div>
+          </section>
+
+          <div class="demo-rule" aria-hidden="true"></div>
+
+          <section class="family-visual-side" aria-labelledby="family-curve-title">
+            <div class="visual-heading family-visual-heading family-curve-heading">
+              <div>
+                <h2 id="family-curve-title">Concentration across dimension</h2>
+                <p>Hold <math><mi>r</mi></math> fixed and let <math><mi>n</mi></math> grow</p>
+              </div>
+              <output class="family-alpha-badge" id="familyAlphaValue" aria-live="polite">0.329</output>
+            </div>
+            <canvas id="familyCurveCanvas" class="demo-canvas family-curve-canvas" role="img" aria-label="Concentration function alpha X sub n of r plotted against dimension n"></canvas>
+            <p class="family-limit-note">
+              <math aria-label="alpha X sub n of r approaches zero"><mrow><msub><mi>α</mi><msub><mi>X</mi><mi>n</mi></msub></msub><mo>(</mo><mi>r</mi><mo>)</mo><mo>→</mo><mn>0</mn></mrow></math>
+              for each fixed
+              <math aria-label="r greater than zero"><mrow><mi>r</mi><mo>&gt;</mo><mn>0</mn></mrow></math>
+            </p>
+          </section>
+        </div>
+
+        <footer class="family-controls">
+          <div class="family-control-group">
+            <div class="family-control-readout">
+              <label for="dimensionSlider">Dimension · log scale</label>
+              <output id="dimensionValue" for="dimensionSlider">n = 2</output>
+            </div>
+            <div class="family-slider-area">
+              <input class="family-slider" id="dimensionSlider" type="range" min="1" max="11" step="0.01" value="1" aria-label="Dimension n on a logarithmic scale">
+              <div class="family-slider-ticks" aria-hidden="true">
+                <span>2</span><span>8</span><span>32</span><span>128</span><span>512</span><span>2048</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="family-control-group">
+            <div class="family-control-readout">
+              <label for="familyRadiusSlider">Fixed radius</label>
+              <output id="familyRadiusValue" for="familyRadiusSlider">r = 0.350</output>
+            </div>
+            <div class="family-slider-area">
+              <input class="family-slider" id="familyRadiusSlider" type="range" min="0" max="1.5707963268" step="0.001" value="0.350" aria-label="Fixed neighborhood radius r">
+              <div class="family-slider-ticks" aria-hidden="true">
+                <span>0</span><span>π/4</span><span>π/2</span>
+              </div>
+            </div>
+          </div>
+        </footer>
+
+        <div class="slide-count" aria-label="Slide 4 of 12">04 <span>/</span> 12</div>
+      </div>
+    </section>
+
+    <section class="slide product-example-slide" data-slide="5" aria-labelledby="slide-5-title" aria-hidden="true">
+      <div class="slide-frame">
+        <header class="slide-header family-header product-header">
+          <p class="eyebrow">MEASURE CONCENTRATION <span>·</span> 05</p>
+          <h1 id="slide-5-title">An example without measure concentration</h1>
+          <math class="family-setting-math" aria-label="The metric probability triple X sub n d sub n mu sub n equals S to the n times a b, d geo, and sigma sub n tensor normalized Lebesgue measure">
+            <mrow>
+              <mo>(</mo><msub><mi>X</mi><mi>n</mi></msub><mo>,</mo><msub><mi>d</mi><mi>n</mi></msub><mo>,</mo><msub><mi>μ</mi><mi>n</mi></msub><mo>)</mo><mo>=</mo>
+              <mo>(</mo><msup><mi>S</mi><mi>n</mi></msup><mo>×</mo><mo>[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>]</mo><mo>,</mo>
+              <msub><mi>d</mi><mi>geo</mi></msub><mo>,</mo>
+              <msub><mi>σ</mi><mi>n</mi></msub><mo>⊗</mo><msub><mi>λ</mi><mrow><mo>[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>]</mo></mrow></msub><mo>)</mo><mo>,</mo>
+              <mspace width="0.4em"></mspace><mi>a</mi><mo>&lt;</mo><mi>b</mi><mo>.</mo>
+            </mrow>
+          </math>
+        </header>
+
+        <div class="family-demo product-demo">
+          <section class="family-visual-side" aria-labelledby="product-cloud-title">
+            <div class="visual-heading family-visual-heading">
+              <div>
+                <h2 id="product-cloud-title">Projection onto <math><mrow><msup><mi>S</mi><mn>1</mn></msup><mo>×</mo><mo>[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>]</mo></mrow></math></h2>
+                <p>The angular and interval coordinates stay full-scale for every <math><mi>n</mi></math></p>
+              </div>
+              <output class="family-dimension-badge" id="productDimensionBadge" for="productDimensionSlider">n = 1</output>
+            </div>
+            <canvas id="productCloudCanvas" class="demo-canvas family-cloud-canvas" role="img" aria-label="Draggable three-dimensional point cloud from S to the n times a b projected onto S one times a b without dimensional contraction"></canvas>
+            <p class="family-projection-caption">projection onto <math><mrow><msup><mi>S</mi><mn>1</mn></msup><mo>×</mo><mo>[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>]</mo></mrow></math></p>
+            <div class="region-legend family-legend" aria-label="Product point cloud color legend">
+              <span><i class="legend-swatch swatch-blue"></i><math><msub><mi>B</mi><mi>n</mi></msub></math></span>
+              <span><i class="legend-swatch swatch-gold"></i><math><mrow><msub><mi>B</mi><mrow><mi>n</mi><mo>,</mo><mi>r</mi></mrow></msub><mo>∖</mo><msub><mi>B</mi><mi>n</mi></msub></mrow></math></span>
+              <span><i class="legend-swatch swatch-red"></i><math><mrow><msub><mi>X</mi><mi>n</mi></msub><mo>∖</mo><msub><mi>B</mi><mrow><mi>n</mi><mo>,</mo><mi>r</mi></mrow></msub></mrow></math></span>
+            </div>
+          </section>
+
+          <div class="demo-rule" aria-hidden="true"></div>
+
+          <section class="family-visual-side" aria-labelledby="product-curve-title">
+            <div class="visual-heading family-visual-heading family-curve-heading">
+              <div>
+                <h2 id="product-curve-title">
+                  <math aria-label="mu sub n of X sub n minus B sub n r">
+                    <mrow><msub><mi>μ</mi><mi>n</mi></msub><mo stretchy="false">(</mo><msub><mi>X</mi><mi>n</mi></msub><mo>∖</mo><msub><mi>B</mi><mrow><mi>n</mi><mo>,</mo><mi>r</mi></mrow></msub><mo stretchy="false">)</mo></mrow>
+                  </math>
+                </h2>
+                <p>A half-mass witness independent of <math><mi>n</mi></math></p>
+              </div>
+              <div class="product-mass-badge">
+                <math aria-label="mu sub n of X sub n minus B sub n comma r equals">
+                  <mrow>
+                    <msub><mi>μ</mi><mi>n</mi></msub><mo stretchy="false">(</mo><msub><mi>X</mi><mi>n</mi></msub><mo>∖</mo><msub><mi>B</mi><mrow><mi>n</mi><mo>,</mo><mi>r</mi></mrow></msub><mo stretchy="false">)</mo><mo>=</mo>
+                  </mrow>
+                </math>
+                <output id="productMassValue" aria-live="polite">0.350</output>
+              </div>
+            </div>
+            <canvas id="productCurveCanvas" class="demo-canvas family-curve-canvas" role="img" aria-label="mu sub n of X sub n minus B sub n r plotted against dimension n"></canvas>
+            <p class="family-limit-note product-limit-note">
+              <math aria-label="alpha X sub n of r is at least mu sub n of X sub n minus B sub n r, equal to the maximum of one half minus r and zero">
+                <mrow>
+                  <msub><mi>α</mi><msub><mi>X</mi><mi>n</mi></msub></msub><mo>(</mo><mi>r</mi><mo>)</mo>
+                  <mo>≥</mo><msub><mi>μ</mi><mi>n</mi></msub><mo stretchy="false">(</mo><msub><mi>X</mi><mi>n</mi></msub><mo>∖</mo><msub><mi>B</mi><mrow><mi>n</mi><mo>,</mo><mi>r</mi></mrow></msub><mo stretchy="false">)</mo>
+                  <mo>=</mo><mi mathvariant="normal">max</mi><mo>{</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>−</mo><mi>r</mi><mo>,</mo><mn>0</mn><mo>}</mo><mo>.</mo>
+                </mrow>
+              </math>
+            </p>
+          </section>
+        </div>
+
+        <footer class="family-controls">
+          <div class="family-control-group">
+            <div class="family-control-readout">
+              <label for="productDimensionSlider">Dimension · log scale</label>
+              <output id="productDimensionValue" for="productDimensionSlider">n = 1</output>
+            </div>
+            <div class="family-slider-area">
+              <input class="family-slider" id="productDimensionSlider" type="range" min="0" max="11" step="0.01" value="0" aria-label="Dimension n on a logarithmic scale">
+              <div class="family-slider-ticks product-dimension-ticks" aria-hidden="true">
+                <span style="left:0%">1</span>
+                <span style="left:27.27%">8</span>
+                <span style="left:54.55%">64</span>
+                <span style="left:81.82%">512</span>
+                <span style="left:100%">2048</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="family-control-group">
+            <div class="family-control-readout product-radius-readout">
+              <label for="productRadiusSlider">Radius</label>
+              <output id="productRadiusValue" for="productRadiusSlider">r = 0.150</output>
+            </div>
+            <div class="family-slider-area">
+              <input class="family-slider" id="productRadiusSlider" type="range" min="0" max="1" step="0.001" value="0.150" aria-label="Normalized neighborhood radius r">
+              <div class="family-slider-ticks" aria-hidden="true">
+                <span>0</span><span>1/2</span><span>1</span>
+              </div>
+            </div>
+          </div>
+        </footer>
+
+        <div class="slide-count" aria-label="Slide 5 of 12">05 <span>/</span> 12</div>
+      </div>
+    </section>
+
+    <section class="slide lipschitz-slide" data-slide="6" aria-labelledby="slide-6-title" aria-hidden="true">
+      <div class="slide-frame">
+        <header class="slide-header lipschitz-header">
+          <p class="eyebrow">MEASURE CONCENTRATION <span>·</span> 06</p>
+          <h1 id="slide-6-title">Related work: Ledoux’s concentration results</h1>
+          <p class="setup">
+            Let
+            <math aria-label="m sub f"><msub><mi>m</mi><mi>f</mi></msub></math>
+            be a median of a <math aria-label="one Lipschitz"><mn>1</mn><mtext>-Lipschitz</mtext></math> function
+            <math aria-label="f from X to R"><mi>f</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi mathvariant="double-struck">R</mi></math>.
+            <span class="median-definition">
+              i.e.,
+              <math aria-label="the measure of f less than or equal to m f and the measure of f greater than or equal to m f are both at least one half">
+                <mrow>
+                  <mi>μ</mi><mo stretchy="false">(</mo><mo>{</mo><mi>f</mi><mo>≤</mo><msub><mi>m</mi><mi>f</mi></msub><mo>}</mo><mo stretchy="false">)</mo><mo>≥</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>,</mo>
+                  <mspace width="0.45em"></mspace>
+                  <mi>μ</mi><mo stretchy="false">(</mo><mo>{</mo><mi>f</mi><mo>≥</mo><msub><mi>m</mi><mi>f</mi></msub><mo>}</mo><mo stretchy="false">)</mo><mo>≥</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>.</mo>
+                </mrow>
+              </math>
+            </span>
+          </p>
+        </header>
+
+        <div class="lipschitz-content">
+          <section class="lipschitz-equivalence" aria-labelledby="equivalence-title">
+            <p class="definition-label" id="equivalence-title">Set–function equivalence</p>
+            <p class="equivalence-intro">
+              A <math><mn>1</mn><mtext>-Lipschitz</mtext></math> function is a map
+            </p>
+            <math class="display-math lipschitz-definition-math" display="block" aria-label="f from X to R, absolute f x minus f y is at most d x y">
+              <mrow>
+                <mi>f</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi mathvariant="double-struck">R</mi><mo>,</mo>
+                <mspace width="0.7em"></mspace>
+                <mo>|</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>−</mo><mi>f</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mo>|</mo>
+                <mo>≤</mo><mi>d</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>.</mo>
+              </mrow>
+            </math>
+            <p class="consequence-label">For every <math><mrow><mi>r</mi><mo>&gt;</mo><mn>0</mn></mrow></math>,</p>
+            <math class="display-math equivalence-math" display="block" aria-label="alpha X of r is at most the supremum over one Lipschitz f of the measure of absolute f minus its median at least r, which is at most two alpha X of r">
+              <mrow>
+                <msub><mi>α</mi><mi>X</mi></msub><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo>
+                <mo>≤</mo>
+                <munder>
+                  <mo>sup</mo>
+                  <mrow><msub><mrow><mo>‖</mo><mi>f</mi><mo>‖</mo></mrow><mi>Lip</mi></msub><mo>≤</mo><mn>1</mn></mrow>
+                </munder>
+                <mi>μ</mi><mo stretchy="false">(</mo><mo>|</mo><mi>f</mi><mo>−</mo><msub><mi>m</mi><mi>f</mi></msub><mo>|</mo><mo>≥</mo><mi>r</mi><mo stretchy="false">)</mo>
+                <mo>≤</mo>
+                <mn>2</mn><msub><mi>α</mi><mi>X</mi></msub><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo><mo>.</mo>
+              </mrow>
+            </math>
+          </section>
+
+          <div class="lipschitz-rule" aria-hidden="true"></div>
+
+          <section class="ledoux-result" aria-labelledby="ledoux-title">
+            <p class="definition-label" id="ledoux-title">Ledoux’s estimate on the sphere</p>
+            <p class="ledoux-assumption">
+              For every
+              <math aria-label="one Lipschitz f from S n to R and r greater than zero">
+                <mrow>
+                  <mn>1</mn><mtext>-Lipschitz</mtext><mspace width="0.35em"></mspace>
+                  <mi>f</mi><mo>:</mo><msup><mi>S</mi><mi>n</mi></msup><mo>→</mo><mi mathvariant="double-struck">R</mi><mo>,</mo>
+                  <mspace width="0.35em"></mspace><mi>r</mi><mo>&gt;</mo><mn>0</mn>
+                </mrow>
+              </math>
+            </p>
+            <math class="display-math ledoux-math" display="block" aria-label="sigma n of absolute f minus its median at least r is at most C exponential minus c n r squared">
+              <mrow>
+                <msub><mi>σ</mi><mi>n</mi></msub>
+                <mo stretchy="false">(</mo><mo>|</mo><mi>f</mi><mo>−</mo><msub><mi>m</mi><mi>f</mi></msub><mo>|</mo><mo>≥</mo><mi>r</mi><mo stretchy="false">)</mo>
+                <mo>≤</mo>
+                <mi>C</mi><msup><mi>e</mi><mrow><mo>−</mo><mi>c</mi><mi>n</mi><msup><mi>r</mi><mn>2</mn></msup></mrow></msup><mo>.</mo>
+              </mrow>
+            </math>
+            <p class="ledoux-source">Universal constants <math><mi>C</mi><mo>,</mo><mi>c</mi><mo>&gt;</mo><mn>0</mn></math> · Ledoux, Chapter 2</p>
+          </section>
+
+          <div class="sphere-conclusion" aria-label="Deduction that the metric probability triples on the spheres form a Levy family">
+            <span>Fixed <math><mrow><mi>r</mi><mo>&gt;</mo><mn>0</mn></mrow></math></span>
+            <span class="conclusion-arrow" aria-hidden="true">→</span>
+            <math aria-label="C exponential minus c n r squared approaches zero"><mrow><mi>C</mi><msup><mi>e</mi><mrow><mo>−</mo><mi>c</mi><mi>n</mi><msup><mi>r</mi><mn>2</mn></msup></mrow></msup><mo>→</mo><mn>0</mn></mrow></math>
+            <span class="conclusion-arrow" aria-hidden="true">→</span>
+            <strong>
+              <math aria-label="the sequence of triples S n, geodesic distance, sigma n, for n greater than or equal to one">
+                <msub>
+                  <mrow>
+                    <mo>{</mo><mo>(</mo><msup><mi>S</mi><mi>n</mi></msup><mo>,</mo><msub><mi>d</mi><mi>geo</mi></msub><mo>,</mo><msub><mi>σ</mi><mi>n</mi></msub><mo>)</mo><mo>}</mo>
+                  </mrow>
+                  <mrow><mi>n</mi><mo>≥</mo><mn>1</mn></mrow>
+                </msub>
+              </math>
+              is a Lévy family
+            </strong>
+          </div>
+        </div>
+
+        <footer class="extension-question">
+          <p class="meaning-label">QUESTION</p>
+          <p>
+            Can this be generalized to
+            <strong>hypersurfaces of revolution</strong>?
+          </p>
+        </footer>
+
+        <div class="slide-count" aria-label="Slide 6 of 12">06 <span>/</span> 12</div>
+      </div>
+    </section>
+
+    <section class="slide revolution-setting-slide" data-slide="7" aria-labelledby="slide-7-title" aria-hidden="true">
+      <div class="slide-frame">
+        <header class="slide-header revolution-setting-header">
+          <p class="eyebrow">MEASURE CONCENTRATION <span>·</span> 07</p>
+          <h1 id="slide-7-title">Hypersurfaces of revolution</h1>
+          <p class="setup">
+            One positive profile <math><mi>f</mi></math> generates a metric probability space in every dimension.
+          </p>
+        </header>
+
+        <div class="revolution-setting-content">
+          <figure class="revolution-setting-visual" aria-labelledby="revolution-visual-title">
+            <div class="revolution-visual-heading">
+              <p class="definition-label" id="revolution-visual-title">Profile → hypersurface</p>
+              <span>DRAG TO ROTATE</span>
+            </div>
+            <canvas id="revolutionSettingCanvas" aria-label="Draggable visualization of a positive profile rotated into a surface of revolution, shown in dimension two"></canvas>
+            <figcaption>
+              Shown for <math><mrow><mi>n</mi><mo>=</mo><mn>2</mn></mrow></math>;
+              the same profile generates every <math><msub><mi>Σ</mi><mrow><mi>f</mi><mo>,</mo><mi>n</mi></mrow></msub></math>.
+            </figcaption>
+          </figure>
+
+          <div class="revolution-setting-rule" aria-hidden="true"></div>
+
+          <section class="revolution-setting-definition" aria-labelledby="revolution-setting-title">
+            <p class="definition-label" id="revolution-setting-title">The setting</p>
+
+            <p class="revolution-setting-label">Profile</p>
+            <math class="display-math revolution-profile-math" display="block" aria-label="f belongs to C one of a b and is positive">
+              <mrow>
+                <mi>f</mi><mo>∈</mo><msup><mi>C</mi><mn>1</mn></msup><mo stretchy="false">(</mo><mo>[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>]</mo><mo stretchy="false">)</mo><mo>,</mo>
+                <mspace width="0.5em"></mspace><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>&gt;</mo><mn>0</mn><mo>.</mo>
+              </mrow>
+            </math>
+
+            <p class="revolution-setting-label">Hypersurface</p>
+            <math class="display-math revolution-space-math" display="block" aria-label="Sigma f n equals the set of f x omega comma x, where x is in a b and omega is in S n minus one, contained in R n plus one">
+              <mrow>
+                <msub><mi>Σ</mi><mrow><mi>f</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>:=</mo><mo>{</mo><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>ω</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>:</mo>
+                <mspace width="0.3em"></mspace><mi>x</mi><mo>∈</mo><mo>[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>]</mo><mo>,</mo><mspace width="0.3em"></mspace>
+                <mi>ω</mi><mo>∈</mo><msup><mi>S</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>}</mo><mo>⊂</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>.</mo>
+              </mrow>
+            </math>
+
+            <div class="revolution-triple">
+              <math aria-label="Sigma f n, d n, mu n">
+                <mrow><mo stretchy="false">(</mo><msub><mi>Σ</mi><mrow><mi>f</mi><mo>,</mo><mi>n</mi></mrow></msub><mo>,</mo><msub><mi>d</mi><mi>n</mi></msub><mo>,</mo><msub><mi>μ</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow>
+              </math>
+              <p>
+                <math><msub><mi>d</mi><mi>n</mi></msub></math>: intrinsic distance
+                <span>·</span>
+                <math><msub><mi>μ</mi><mi>n</mi></msub></math>: normalized Riemannian volume
+              </p>
+            </div>
+
+            <div class="revolution-measure">
+              <p class="revolution-setting-label">Probability measure</p>
+              <math class="display-math revolution-measure-math" display="block" aria-label="mu n equals nu n times normalized spherical measure; nu n has density one over Z n times f x to the n minus one times the square root of one plus f prime x squared">
+                <mtable columnalign="left" rowspacing="0.28em">
+                  <mtr>
+                    <mtd>
+                      <mrow>
+                        <mi mathvariant="normal">d</mi><msub><mi>μ</mi><mi>n</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>ω</mi><mo stretchy="false">)</mo>
+                        <mo>=</mo><mi mathvariant="normal">d</mi><msub><mi>ν</mi><mi>n</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo>
+                        <mi mathvariant="normal">d</mi><msub><mi>σ</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo><mo>,</mo>
+                      </mrow>
+                    </mtd>
+                  </mtr>
+                  <mtr>
+                    <mtd>
+                      <mrow>
+                        <mi mathvariant="normal">d</mi><msub><mi>ν</mi><mi>n</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo>
+                        <mo>=</mo><mfrac><mn>1</mn><msub><mi>Z</mi><mi>n</mi></msub></mfrac>
+                        <msup><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup>
+                        <msqrt><mrow><mn>1</mn><mo>+</mo><msup><mrow><msup><mi>f</mi><mo>′</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mn>2</mn></msup></mrow></msqrt>
+                        <mi mathvariant="normal">d</mi><mi>x</mi><mo>.</mo>
+                      </mrow>
+                    </mtd>
+                  </mtr>
+                </mtable>
+              </math>
+              <p class="revolution-measure-note">
+                <math><msub><mi>σ</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub></math>
+                is normalized surface measure on
+                <math><msup><mi>S</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup></math>;
+                <math><msub><mi>Z</mi><mi>n</mi></msub></math> makes
+                <math><mrow><msub><mi>μ</mi><mi>n</mi></msub><mo stretchy="false">(</mo><msub><mi>Σ</mi><mrow><mi>f</mi><mo>,</mo><mi>n</mi></mrow></msub><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn></mrow></math>.
+              </p>
+            </div>
+          </section>
+        </div>
+
+        <footer class="revolution-setting-question">
+          <p class="meaning-label">QUESTION</p>
+          <p>
+            For which profiles <math><mi>f</mi></math> does the
+            <strong>measure concentration phenomenon</strong>?
+          </p>
+        </footer>
+
+        <div class="slide-count" aria-label="Slide 7 of 12">07 <span>/</span> 12</div>
+      </div>
+    </section>
+
+    <section class="slide main-theorem-slide" data-slide="8" aria-labelledby="slide-8-title" aria-hidden="true">
+      <div class="slide-frame">
+        <header class="slide-header main-theorem-header">
+          <p class="eyebrow">MEASURE CONCENTRATION <span>·</span> 08</p>
+            <h1 id="slide-8-title">Main theorem: one dominant order</h1>
+        </header>
+
+        <div class="main-theorem-content">
+          <section class="theorem-assumptions" aria-labelledby="theorem-assumptions-title">
+              <p class="definition-label" id="theorem-assumptions-title">Maximum set and local orders</p>
+              <math class="display-math theorem-maxima-math" display="block" aria-label="the maximum set of f is x one through x k, and f star is the maximum of f">
+                <mrow>
+                  <mi mathvariant="normal">Max</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>:=</mo><mo>{</mo><mi>x</mi><mo>:</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>f</mi><mo>∗</mo></msub><mo>}</mo>
+                  <mo>=</mo><mo>{</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>x</mi><mi>k</mi></msub><mo>}</mo><mo>,</mo>
+                  <mspace width="0.55em"></mspace><msub><mi>f</mi><mo>∗</mo></msub><mo>=</mo><munder><mo>max</mo><mi>x</mi></munder><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>.</mo>
+                </mrow>
+              </math>
+              <p class="theorem-copy">Near each maximizer <math><msub><mi>x</mi><mi>j</mi></msub></math>:</p>
+            <math class="display-math theorem-local-math" display="block" aria-label="a j times absolute x minus x j to p j is at most f star minus f x, which is at most A j times absolute x minus x j to p j">
+              <mrow>
+                <msub><mi>a</mi><mi>j</mi></msub><msup><mrow><mo>|</mo><mi>x</mi><mo>−</mo><msub><mi>x</mi><mi>j</mi></msub><mo>|</mo></mrow><msub><mi>p</mi><mi>j</mi></msub></msup>
+                <mo>≤</mo><msub><mi>f</mi><mo>∗</mo></msub><mo>−</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo>
+                <mo>≤</mo><msub><mi>A</mi><mi>j</mi></msub><msup><mrow><mo>|</mo><mi>x</mi><mo>−</mo><msub><mi>x</mi><mi>j</mi></msub><mo>|</mo></mrow><msub><mi>p</mi><mi>j</mi></msub></msup><mo>,</mo>
+                <mspace width="0.45em"></mspace><msub><mi>p</mi><mi>j</mi></msub><mo>≥</mo><mn>1</mn><mo>.</mo>
+              </mrow>
+              </math>
+            </section>
+
+          <div class="main-theorem-rule" aria-hidden="true"></div>
+
+          <section class="theorem-unique" aria-labelledby="theorem-unique-title">
+              <p class="definition-label" id="theorem-unique-title">Maximal local order and its maximizers</p>
+              <math class="display-math theorem-unique-math" display="block" aria-label="p max is the maximum local order, and J max is the set of maximizers whose local order equals p max">
+                <mtable columnalign="center" rowspacing="0.42em">
+                  <mtr><mtd><mrow><msub><mi>p</mi><mi>max</mi></msub><mo>:=</mo><munder><mo>max</mo><mrow><mn>1</mn><mo>≤</mo><mi>j</mi><mo>≤</mo><mi>k</mi></mrow></munder><msub><mi>p</mi><mi>j</mi></msub><mo>,</mo></mrow></mtd></mtr>
+                  <mtr><mtd><mrow><msub><mi>J</mi><mi>max</mi></msub><mo>:=</mo><mo>{</mo><msub><mi>x</mi><mi>j</mi></msub><mo>∈</mo><mi mathvariant="normal">Max</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>:</mo><msub><mi>p</mi><mi>j</mi></msub><mo>=</mo><msub><mi>p</mi><mi>max</mi></msub><mo>}</mo><mo>.</mo></mrow></mtd></mtr>
+                </mtable>
+              </math>
+            </section>
+
+          <section class="theorem-bound" aria-labelledby="theorem-bound-title">
+            <div class="theorem-bound-heading">
+                <p class="definition-label" id="theorem-bound-title">General concentration bound</p>
+                <p>
+                  Choose any <math><mrow><msub><mi>x</mi><msub><mi>j</mi><mo>∗</mo></msub></msub><mo>∈</mo><msub><mi>J</mi><mi>max</mi></msub></mrow></math>;
+                  fixed <math><mrow><mi>r</mi><mo>&gt;</mo><mn>0</mn></mrow></math>, all sufficiently large <math><mi>n</mi></math>;
+                  <math><mrow><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>c</mi><mn>4</mn></msub><mo>&gt;</mo><mn>0</mn></mrow></math> independent of <math><mi>n</mi></math>.
+                </p>
+            </div>
+
+            <math class="display-math theorem-bound-math" display="block" aria-label="the concentration function of X n is bounded by four terms that vanish as n tends to infinity">
+              <mtable columnalign="right left" rowspacing="0.55em" columnspacing="0.5em">
+                <mtr>
+                  <mtd><msub><mi>α</mi><msub><mi>X</mi><mi>n</mi></msub></msub><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mtd>
+                  <mtd>
+                    <mrow>
+                      <mo>≤</mo><msub><mi>c</mi><mn>1</mn></msub><mi mathvariant="normal">exp</mi><mo stretchy="false">(</mo><mo>−</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><msup><mi>r</mi><msub><mi>p</mi><mi>max</mi></msub></msup><mo stretchy="false">)</mo>
+                      <mo>+</mo><msub><mi>c</mi><mn>2</mn></msub><mi mathvariant="normal">exp</mi><mo stretchy="false">(</mo><mo>−</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>2</mn><mo stretchy="false">)</mo><msup><mi>r</mi><mn>2</mn></msup><mo stretchy="false">)</mo>
+                    </mrow>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd></mtd>
+                  <mtd>
+                    <mrow>
+                      <mo>+</mo><msub><mi>c</mi><mn>3</mn></msub><munder><mo>∑</mo><mrow><mi>j</mi><mo>≠</mo><msub><mi>j</mi><mo>∗</mo></msub></mrow></munder><msup><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><mrow><mfrac><mn>1</mn><msub><mi>p</mi><mi>max</mi></msub></mfrac><mo>−</mo><mfrac><mn>1</mn><msub><mi>p</mi><mi>j</mi></msub></mfrac></mrow></msup>
+                      <mo>+</mo><msub><mi>c</mi><mn>4</mn></msub><msup><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><mfrac><mn>1</mn><msub><mi>p</mi><mi>max</mi></msub></mfrac></msup><msup><mi>e</mi><mrow><mo>−</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msup><mo>.</mo>
+                    </mrow>
+                  </mtd>
+                </mtr>
+              </mtable>
+            </math>
+
+              <div class="theorem-limit">
+                <span>If <math><mrow><mo>|</mo><msub><mi>J</mi><mi>max</mi></msub><mo>|</mo><mo>=</mo><mn>1</mn></mrow></math></span>
+                <span class="theorem-limit-arrow" aria-hidden="true">→</span>
+              <strong><math><mrow><msub><mi>α</mi><msub><mi>X</mi><mi>n</mi></msub></msub><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo><mo>→</mo><mn>0</mn></mrow></math></strong>
+              <span class="theorem-limit-arrow" aria-hidden="true">→</span>
+              <strong>Lévy family</strong>
+            </div>
+          </section>
+        </div>
+
+
+        <div class="slide-count" aria-label="Slide 8 of 12">08 <span>/</span> 12</div>
+      </div>
+    </section>
+
+    <section class="slide unique-maximum-slide" data-slide="9" aria-labelledby="slide-9-title" aria-hidden="true">
+      <div class="slide-frame">
+        <header class="slide-header unique-maximum-header">
+          <p class="eyebrow">MEASURE CONCENTRATION <span>·</span> 09</p>
+          <h1 id="slide-9-title">Unique maximum: one dominant order</h1>
+          <p class="setup">
+            Fix <math><mrow><mi>A</mi><mo>=</mo><mo>{</mo><mi>x</mi><mo>≤</mo><mn>0</mn><mo>}</mo></mrow></math>,
+            <math><mrow><msub><mi>μ</mi><mi>n</mi></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow></math>;
+            choose <math><mrow><mi>r</mi><mo>&gt;</mo><mn>0</mn></mrow></math>, then increase <math><mi>n</mi></math>.
+          </p>
+        </header>
+
+        <div class="unique-maximum-content">
+          <section class="unique-profile-panel" aria-labelledby="ellipse-profile-title">
+            <div class="unique-profile-heading">
+              <div>
+                <h2 id="ellipse-profile-title">Ellipse</h2>
+                <math aria-label="f E of x equals the square root of one minus three fourths x squared">
+                  <mrow><msub><mi>f</mi><mi>E</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msqrt><mrow><mn>1</mn><mo>−</mo><mfrac><mn>3</mn><mn>4</mn></mfrac><msup><mi>x</mi><mn>2</mn></msup></mrow></msqrt></mrow>
+                </math>
+                <p class="unique-domain-line">
+                  <math aria-label="a b equals minus two over square root three to two over square root three; f is positive on a b">
+                    <mrow><mo>[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>]</mo><mo>=</mo><mo>[</mo><mo>−</mo><mfrac><mn>2</mn><msqrt><mn>3</mn></msqrt></mfrac><mo>,</mo><mfrac><mn>2</mn><msqrt><mn>3</mn></msqrt></mfrac><mo>]</mo><mo>,</mo><mspace width="0.35em"></mspace><mi>f</mi><mo>&gt;</mo><mn>0</mn><mspace width="0.2em"></mspace><mtext>on</mtext><mspace width="0.2em"></mspace><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow>
+                  </math>
+                </p>
+              </div>
+              <p class="unique-outside-readout">
+                <math><mrow><msub><mi>μ</mi><mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>∖</mo><msub><mi>A</mi><mi>r</mi></msub><mo stretchy="false">)</mo></mrow></math>
+                <output id="ellipseOutsideMass">0.000</output>
+              </p>
+            </div>
+            <canvas id="ellipseMcpCanvas" aria-label="Projected point cloud for an elliptic profile with a unique maximum"></canvas>
+          </section>
+
+          <div class="unique-maximum-rule" aria-hidden="true"></div>
+
+          <section class="unique-profile-panel" aria-labelledby="parabola-profile-title">
+            <div class="unique-profile-heading">
+              <div>
+                <h2 id="parabola-profile-title">Parabola</h2>
+                <math aria-label="f P of x equals one minus one half x squared">
+                  <mrow><msub><mi>f</mi><mi>P</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>x</mi><mn>2</mn></msup></mrow>
+                </math>
+                <p class="unique-domain-line">
+                  <math aria-label="a b equals minus square root two to square root two; f is positive on a b">
+                    <mrow><mo>[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>]</mo><mo>=</mo><mo>[</mo><mo>−</mo><msqrt><mn>2</mn></msqrt><mo>,</mo><msqrt><mn>2</mn></msqrt><mo>]</mo><mo>,</mo><mspace width="0.35em"></mspace><mi>f</mi><mo>&gt;</mo><mn>0</mn><mspace width="0.2em"></mspace><mtext>on</mtext><mspace width="0.2em"></mspace><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow>
+                  </math>
+                </p>
+              </div>
+              <p class="unique-outside-readout">
+                <math><mrow><msub><mi>μ</mi><mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>∖</mo><msub><mi>A</mi><mi>r</mi></msub><mo stretchy="false">)</mo></mrow></math>
+                <output id="parabolaOutsideMass">0.000</output>
+              </p>
+            </div>
+            <canvas id="parabolaMcpCanvas" aria-label="Projected point cloud for a parabolic profile with a unique maximum"></canvas>
+          </section>
+        </div>
+
+        <footer class="unique-maximum-controls">
+          <div class="unique-maximum-legend" aria-label="Point cloud legend">
+            <span><i class="unique-swatch unique-swatch-blue"></i><math><mrow><mi>A</mi><mo>=</mo><mo>{</mo><mi>x</mi><mo>≤</mo><mn>0</mn><mo>}</mo></mrow></math></span>
+            <span><i class="unique-swatch unique-swatch-gold"></i><math><mrow><msub><mi>A</mi><mi>r</mi></msub><mo>∖</mo><mi>A</mi></mrow></math></span>
+            <span><i class="unique-swatch unique-swatch-red"></i><math><mrow><mi>X</mi><mo>∖</mo><msub><mi>A</mi><mi>r</mi></msub></mrow></math></span>
+          </div>
+
+          <div class="unique-dimension-control">
+            <div class="unique-control-label">
+              <span>dimension <math><mi>n</mi></math> · log scale</span>
+              <output id="uniqueDimensionValue">n = 3</output>
+            </div>
+            <input class="family-slider" id="uniqueDimensionSlider" type="range" min="1.5849625" max="11" step="0.001" value="1.5849625" aria-label="Dimension n on a logarithmic scale">
+            <div class="family-slider-ticks" aria-hidden="true">
+              <span>3</span><span>8</span><span>64</span><span>512</span><span>2048</span>
+            </div>
+          </div>
+
+          <div class="unique-radius-control">
+            <div class="unique-control-label">
+              <span>meridian radius <math><mi>r</mi></math></span>
+              <output id="uniqueRadiusValue">r = 0.30</output>
+            </div>
+              <input class="family-slider" id="uniqueRadiusSlider" type="range" min="0.05" max="1.80" step="0.01" value="0.30" aria-label="Meridian neighborhood radius r">
+              <div class="family-slider-ticks" aria-hidden="true">
+                <span>0.05</span><span>0.50</span><span>1.00</span><span>1.80</span>
+              </div>
+          </div>
+
+          <div class="unique-maximum-limit">
+            <math aria-label="mu n of X minus A r approaches zero">
+              <mrow><msub><mi>μ</mi><mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>∖</mo><msub><mi>A</mi><mi>r</mi></msub><mo stretchy="false">)</mo><mo>→</mo><mn>0</mn></mrow>
+            </math>
+            <strong>MCP</strong>
+          </div>
+        </footer>
+
+        <div class="slide-count" aria-label="Slide 9 of 12">09 <span>/</span> 12</div>
+      </div>
+    </section>
+
+    <section class="slide dominant-maxima-slide" data-slide="10" aria-labelledby="slide-10-title" aria-hidden="true">
+      <div class="slide-frame">
+        <header class="slide-header dominant-maxima-header">
+          <p class="eyebrow">MEASURE CONCENTRATION <span>·</span> 10</p>
+          <h1 id="slide-10-title">Multiple maxima, one dominant order</h1>
+          <math class="dominant-profile-equation" aria-label="f of x equals one minus two fifths times x plus one squared times x minus one to the fourth, for x between minus one point two five and one point two five">
+            <mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><mn>2</mn><mn>5</mn></mfrac><msup><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><msup><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><mn>4</mn></msup><mo>,</mo><mspace width="0.45em"></mspace><mi>x</mi><mo>∈</mo><mo>[</mo><mo>−</mo><mn>1.25</mn><mo>,</mo><mn>1.25</mn><mo>]</mo><mo>.</mo></mrow>
+          </math>
+          <p class="setup">
+            <math aria-label="the maximum set of f is x one equals minus one and x two equals one, p one equals two is less than p two equals p max equals four, and J max is the set containing the point one">
+              <mrow>
+                <mi mathvariant="normal">Max</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><mo>{</mo><msub><mi>x</mi><mn>1</mn></msub><mo>=</mo><mo>−</mo><mn>1</mn><mo>,</mo><msub><mi>x</mi><mn>2</mn></msub><mo>=</mo><mn>1</mn><mo>}</mo><mo>,</mo>
+                <mspace width="0.45em"></mspace><msub><mi>p</mi><mn>1</mn></msub><mo>=</mo><mn>2</mn><mo>&lt;</mo><msub><mi>p</mi><mn>2</mn></msub><mo>=</mo><msub><mi>p</mi><mi>max</mi></msub><mo>=</mo><mn>4</mn><mo>,</mo>
+                <mspace width="0.45em"></mspace><msub><mi>J</mi><mi>max</mi></msub><mo>=</mo><mo>{</mo><mn>1</mn><mo>}</mo><mo>.</mo>
+              </mrow>
+            </math>
+          </p>
+        </header>
+
+        <div class="dominant-maxima-content">
+          <section class="dominant-surface-panel dominant-single-panel" aria-labelledby="dominant-single-title">
+            <div class="dominant-panel-heading">
+              <div>
+                <h2 id="dominant-single-title">Median half-set</h2>
+                <div class="halfset-choice" aria-label="Choose the median half-set">
+                  <button id="dominantHalfSetLeft" class="is-active" type="button" aria-pressed="true">Aₙ⁻ = {x ≤ mₙ}</button>
+                  <button id="dominantHalfSetRight" type="button" aria-pressed="false">Aₙ⁺ = {x ≥ mₙ}</button>
+                </div>
+              </div>
+              <p class="unique-outside-readout">
+                <math><mrow><msub><mi>μ</mi><mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>∖</mo><msub><mrow><mo stretchy="false">(</mo><msub><mi>A</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mi>r</mi></msub><mo stretchy="false">)</mo></mrow></math>
+                <output id="dominantOutsideMassLeft">0.000</output>
+              </p>
+            </div>
+            <canvas id="dominantSurfaceCanvasLeft" aria-label="Projected point cloud using the left median half-set"></canvas>
+          </section>
+
+        </div>
+
+        <footer class="unique-maximum-controls dominant-maxima-controls">
+          <div class="unique-maximum-legend" aria-label="Point cloud legend">
+            <span><i class="unique-swatch unique-swatch-blue"></i><math><msub><mi>A</mi><mi>n</mi></msub></math></span>
+            <span><i class="unique-swatch unique-swatch-gold"></i><math><mrow><msub><mrow><mo stretchy="false">(</mo><msub><mi>A</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mi>r</mi></msub><mo>∖</mo><msub><mi>A</mi><mi>n</mi></msub></mrow></math></span>
+            <span><i class="unique-swatch unique-swatch-red"></i><math><mrow><mi>X</mi><mo>∖</mo><msub><mrow><mo stretchy="false">(</mo><msub><mi>A</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mi>r</mi></msub></mrow></math></span>
+          </div>
+
+          <div class="unique-dimension-control">
+            <div class="unique-control-label">
+              <span>dimension <math><mi>n</mi></math> · log scale</span>
+              <output id="dominantDimensionValue">n = 3</output>
+            </div>
+            <input class="family-slider" id="dominantDimensionSlider" type="range" min="1.585" max="52" step="0.001" value="1.585" aria-label="Dimension n on a logarithmic scale">
+            <div class="family-slider-ticks" aria-hidden="true">
+              <span>3</span><span>2¹²</span><span>2²⁴</span><span>2³⁶</span><span>2⁵²</span>
+            </div>
+          </div>
+
+          <div class="unique-radius-control">
+            <div class="unique-control-label">
+              <span>meridian radius <math><mi>r</mi></math></span>
+              <output id="dominantRadiusValue">r = 0.30</output>
+            </div>
+            <input class="family-slider" id="dominantRadiusSlider" type="range" min="0.05" max="1.80" step="0.01" value="0.30" aria-label="Meridian neighborhood radius r">
+            <div class="family-slider-ticks" aria-hidden="true">
+              <span>0.05</span><span>0.50</span><span>1.00</span><span>1.80</span>
+            </div>
+          </div>
+
+          <div class="unique-maximum-limit">
+            <math aria-label="the cardinality of J max equals one, hence alpha n of r approaches zero">
+              <mrow><mo>|</mo><msub><mi>J</mi><mi>max</mi></msub><mo>|</mo><mo>=</mo><mn>1</mn><mo>⇒</mo><msub><mi>α</mi><msub><mi>X</mi><mi>n</mi></msub></msub><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo><mo>→</mo><mn>0</mn></mrow>
+            </math>
+            <strong>MCP</strong>
+          </div>
+        </footer>
+
+        <div class="slide-count" aria-label="Slide 10 of 12">10 <span>/</span> 12</div>
+      </div>
+    </section>
+
+    <section class="slide dominant-maxima-slide fractional-maxima-slide" data-slide="11" aria-labelledby="slide-11-title" aria-hidden="true">
+      <div class="slide-frame">
+        <header class="slide-header dominant-maxima-header">
+          <p class="eyebrow">MEASURE CONCENTRATION <span>·</span> 11</p>
+          <h1 id="slide-11-title">Three maxima, one dominant order</h1>
+          <math class="dominant-profile-equation" aria-label="f of x equals one minus two thirds times x plus one squared times x squared times x minus one to the fourth, on minus one point two to one point two">
+            <mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><mn>2</mn><mn>3</mn></mfrac><msup><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><msup><mi>x</mi><mn>2</mn></msup><msup><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><mn>4</mn></msup><mo>,</mo><mspace width="0.45em"></mspace><mi>x</mi><mo>∈</mo><mo>[</mo><mo>−</mo><mn>1.2</mn><mo>,</mo><mn>1.2</mn><mo>]</mo><mo>.</mo></mrow>
+          </math>
+          <p class="setup">
+            <math aria-label="the maximum set of f is x one equals minus one, x two equals zero, and x three equals one, p one and p two equal two, p three equals p max equals four, and J max is the set containing the point one">
+              <mtable columnalign="left" rowspacing="0.18em">
+                <mtr><mtd><mrow>
+                  <mi mathvariant="normal">Max</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><mo>{</mo><msub><mi>x</mi><mn>1</mn></msub><mo>=</mo><mo>−</mo><mn>1</mn><mo>,</mo><msub><mi>x</mi><mn>2</mn></msub><mo>=</mo><mn>0</mn><mo>,</mo><msub><mi>x</mi><mn>3</mn></msub><mo>=</mo><mn>1</mn><mo>}</mo><mo>,</mo>
+                </mrow></mtd></mtr>
+                <mtr><mtd><mrow>
+                  <msub><mi>p</mi><mn>1</mn></msub><mo>=</mo><msub><mi>p</mi><mn>2</mn></msub><mo>=</mo><mn>2</mn><mo>&lt;</mo><msub><mi>p</mi><mn>3</mn></msub><mo>=</mo><msub><mi>p</mi><mi>max</mi></msub><mo>=</mo><mn>4</mn><mo>,</mo>
+                  <mspace width="0.4em"></mspace><msub><mi>J</mi><mi>max</mi></msub><mo>=</mo><mo>{</mo><mn>1</mn><mo>}</mo><mo>.</mo>
+                </mrow></mtd></mtr>
+              </mtable>
+            </math>
+          </p>
+        </header>
+
+        <div class="dominant-maxima-content">
+          <section class="dominant-surface-panel dominant-single-panel" aria-labelledby="fractional-single-title">
+            <div class="dominant-panel-heading">
+              <div>
+                <h2 id="fractional-single-title">Median half-set</h2>
+                <div class="halfset-choice" aria-label="Choose the median half-set">
+                  <button id="fractionalHalfSetLeft" class="is-active" type="button" aria-pressed="true">Aₙ⁻ = {x ≤ mₙ}</button>
+                  <button id="fractionalHalfSetRight" type="button" aria-pressed="false">Aₙ⁺ = {x ≥ mₙ}</button>
+                </div>
+              </div>
+              <p class="unique-outside-readout">
+                <math><mrow><msub><mi>μ</mi><mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>∖</mo><msub><mrow><mo stretchy="false">(</mo><msub><mi>A</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mi>r</mi></msub><mo stretchy="false">)</mo></mrow></math>
+                <output id="fractionalOutsideMass">0.000</output>
+              </p>
+            </div>
+            <canvas id="fractionalDominantSurfaceCanvas" aria-label="Point cloud for three maxima with local orders two, two, and four"></canvas>
+          </section>
+        </div>
+
+        <footer class="unique-maximum-controls dominant-maxima-controls">
+          <div class="unique-maximum-legend" aria-label="Point cloud legend">
+            <span><i class="unique-swatch unique-swatch-blue"></i><math><msub><mi>A</mi><mi>n</mi></msub></math></span>
+            <span><i class="unique-swatch unique-swatch-gold"></i><math><mrow><msub><mrow><mo stretchy="false">(</mo><msub><mi>A</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mi>r</mi></msub><mo>∖</mo><msub><mi>A</mi><mi>n</mi></msub></mrow></math></span>
+            <span><i class="unique-swatch unique-swatch-red"></i><math><mrow><mi>X</mi><mo>∖</mo><msub><mrow><mo stretchy="false">(</mo><msub><mi>A</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mi>r</mi></msub></mrow></math></span>
+          </div>
+
+          <div class="unique-dimension-control">
+            <div class="unique-control-label">
+              <span>dimension <math><mi>n</mi></math> · log scale</span>
+              <output id="fractionalDimensionValue">n = 3</output>
+            </div>
+            <input class="family-slider" id="fractionalDimensionSlider" type="range" min="1.585" max="52" step="0.001" value="1.585" aria-label="Dimension n on a logarithmic scale">
+            <div class="family-slider-ticks" aria-hidden="true">
+              <span>3</span><span>2¹²</span><span>2²⁴</span><span>2³⁶</span><span>2⁵²</span>
+            </div>
+          </div>
+
+          <div class="unique-radius-control">
+            <div class="unique-control-label">
+              <span>meridian radius <math><mi>r</mi></math></span>
+              <output id="fractionalRadiusValue">r = 0.30</output>
+            </div>
+            <input class="family-slider" id="fractionalRadiusSlider" type="range" min="0.05" max="1.20" step="0.01" value="0.30" aria-label="Meridian neighborhood radius r">
+            <div class="family-slider-ticks" aria-hidden="true">
+              <span>0.05</span><span>0.40</span><span>0.80</span><span>1.20</span>
+            </div>
+          </div>
+
+          <div class="unique-maximum-limit">
+            <math aria-label="the cardinality of J max equals one, hence alpha n of r approaches zero">
+              <mrow><mo>|</mo><msub><mi>J</mi><mi>max</mi></msub><mo>|</mo><mo>=</mo><mn>1</mn><mo>⇒</mo><msub><mi>α</mi><msub><mi>X</mi><mi>n</mi></msub></msub><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo><mo>→</mo><mn>0</mn></mrow>
+            </math>
+            <strong>MCP</strong>
+          </div>
+        </footer>
+
+        <div class="slide-count" aria-label="Slide 11 of 12">11 <span>/</span> 12</div>
+      </div>
+    </section>
+
+    <section class="slide dominant-maxima-slide equal-maxima-slide" data-slide="12" aria-labelledby="slide-12-title" aria-hidden="true">
+      <div class="slide-frame">
+        <header class="slide-header dominant-maxima-header">
+          <p class="eyebrow">MEASURE CONCENTRATION <span>·</span> 12</p>
+          <h1 id="slide-12-title">Multiple maxima, two dominant orders</h1>
+          <math class="dominant-profile-equation" aria-label="f of x equals one minus one third times x squared minus one to the fourth, on minus one point five to one point five">
+            <mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mn>3</mn></mfrac><msup><mrow><mo stretchy="false">(</mo><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><mn>4</mn></msup><mo>,</mo><mspace width="0.45em"></mspace><mi>x</mi><mo>∈</mo><mo>[</mo><mo>−</mo><mn>1.5</mn><mo>,</mo><mn>1.5</mn><mo>]</mo><mo>.</mo></mrow>
+          </math>
+          <p class="setup">
+            <math aria-label="the maximum set of f is x one equals minus one and x two equals one, p one equals p two equals p max equals four, and J max is the set containing the points minus one and one">
+              <mrow>
+                <mi mathvariant="normal">Max</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><mo>{</mo><msub><mi>x</mi><mn>1</mn></msub><mo>=</mo><mo>−</mo><mn>1</mn><mo>,</mo><msub><mi>x</mi><mn>2</mn></msub><mo>=</mo><mn>1</mn><mo>}</mo><mo>,</mo>
+                <mspace width="0.45em"></mspace><msub><mi>p</mi><mn>1</mn></msub><mo>=</mo><msub><mi>p</mi><mn>2</mn></msub><mo>=</mo><msub><mi>p</mi><mi>max</mi></msub><mo>=</mo><mn>4</mn><mo>,</mo>
+                <mspace width="0.45em"></mspace><msub><mi>J</mi><mi>max</mi></msub><mo>=</mo><mo>{</mo><mo>−</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>}</mo><mo>.</mo>
+              </mrow>
+            </math>
+          </p>
+        </header>
+
+        <div class="dominant-maxima-content">
+          <section class="dominant-surface-panel dominant-single-panel" aria-labelledby="equal-single-title">
+            <div class="dominant-panel-heading">
+              <div>
+                <h2 id="equal-single-title">Median half-set</h2>
+                <div class="halfset-choice" aria-label="Choose the median half-set">
+                  <button id="equalHalfSetLeft" class="is-active" type="button" aria-pressed="true">Aₙ⁻ = {x ≤ mₙ}</button>
+                  <button id="equalHalfSetRight" type="button" aria-pressed="false">Aₙ⁺ = {x ≥ mₙ}</button>
+                </div>
+              </div>
+              <p class="unique-outside-readout equal-outside-readout">
+                <math><mrow><msub><mi>μ</mi><mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>∖</mo><msub><mrow><mo stretchy="false">(</mo><msub><mi>A</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mi>r</mi></msub><mo stretchy="false">)</mo></mrow></math>
+                <output id="equalOutsideMass">0.000</output>
+              </p>
+            </div>
+            <canvas id="equalDominantSurfaceCanvas" aria-label="Point cloud for two maxima with the same dominant order"></canvas>
+          </section>
+        </div>
+
+        <footer class="unique-maximum-controls dominant-maxima-controls">
+          <div class="unique-maximum-legend" aria-label="Point cloud legend">
+            <span><i class="unique-swatch unique-swatch-blue"></i><math><msub><mi>A</mi><mi>n</mi></msub></math></span>
+            <span><i class="unique-swatch unique-swatch-gold"></i><math><mrow><msub><mrow><mo stretchy="false">(</mo><msub><mi>A</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mi>r</mi></msub><mo>∖</mo><msub><mi>A</mi><mi>n</mi></msub></mrow></math></span>
+            <span><i class="unique-swatch unique-swatch-red"></i><math><mrow><mi>X</mi><mo>∖</mo><msub><mrow><mo stretchy="false">(</mo><msub><mi>A</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mi>r</mi></msub></mrow></math></span>
+          </div>
+
+          <div class="unique-dimension-control">
+            <div class="unique-control-label">
+              <span>dimension <math><mi>n</mi></math> · log scale</span>
+              <output id="equalDimensionValue">n = 3</output>
+            </div>
+            <input class="family-slider" id="equalDimensionSlider" type="range" min="1.585" max="52" step="0.001" value="1.585" aria-label="Dimension n on a logarithmic scale">
+            <div class="family-slider-ticks" aria-hidden="true">
+              <span>3</span><span>2¹²</span><span>2²⁴</span><span>2³⁶</span><span>2⁵²</span>
+            </div>
+          </div>
+
+          <div class="unique-radius-control">
+            <div class="unique-control-label">
+              <span>meridian radius <math><mi>r</mi></math></span>
+              <output id="equalRadiusValue">r = 0.30</output>
+            </div>
+            <input class="family-slider" id="equalRadiusSlider" type="range" min="0.05" max="0.90" step="0.01" value="0.30" aria-label="Meridian neighborhood radius r">
+            <div class="family-slider-ticks" aria-hidden="true">
+              <span>0.05</span><span>0.30</span><span>0.60</span><span>0.90</span>
+            </div>
+          </div>
+
+          <div class="unique-maximum-limit equal-maximum-limit">
+            <math aria-label="the cardinality of J max equals two, hence the concentration function does not approach zero">
+              <mrow><mo>|</mo><msub><mi>J</mi><mi>max</mi></msub><mo>|</mo><mo>=</mo><mn>2</mn><mo>⇒</mo><msub><mi>α</mi><msub><mi>X</mi><mi>n</mi></msub></msub><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo><mo>↛</mo><mn>0</mn></mrow>
+            </math>
+            <strong>NO MCP</strong>
+          </div>
+        </footer>
+
+        <div class="slide-count" aria-label="Slide 12 of 12">12 <span>/</span> 12</div>
+      </div>
+    </section>
+  </main>
+
+  <button class="deck-arrow deck-arrow-prev" id="previousSlide" type="button" aria-label="Previous slide" title="Previous slide (Left arrow)">←</button>
+  <button class="deck-arrow deck-arrow-next" id="nextSlide" type="button" aria-label="Next slide" title="Next slide (Right arrow)">→</button>
+
+  <script src="deck.js"></script>
+</body>
+</html>
