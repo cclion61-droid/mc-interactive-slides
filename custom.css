@@ -159,11 +159,11 @@ html .slide[data-slide].slide .slide-header h1 {
 }
 
 .alpha-readout::before {
-  content: "αₓ = ";
+  content: "帢??= ";
 }
 
 .family-alpha-badge::before {
-  content: "αₓₙ = ";
+  content: "帢?? = ";
 }
 
 .product-mass-badge::before {
@@ -709,7 +709,7 @@ html .slide[data-slide].slide .slide-header h1 {
 }
 
 /* The product example has one extra line of copy; reclaim eight pixels from
-   its canvas box while keeping the rendered cylinder at the 1.5× scale. */
+   its canvas box while keeping the rendered cylinder at the 1.5? scale. */
 .product-example-slide .family-cloud-canvas {
   height: clamp(397px, 49.11vh, 442px) !important;
 }
@@ -845,4 +845,55 @@ html .slide[data-slide].slide .slide-header h1 {
 .slide .unique-domain-line,
 .slide figcaption {
   line-height: 1.5 !important;
+}
+
+/* GitHub Pages responsive safety layer ------------------------------------
+   Keep every slide footer attached to the physical browser viewport. The
+   active slide's footer remains readable even if dense content is taller than
+   a phone, tablet, laptop, or projector viewport. */
+.deck,
+.slide,
+.slide-frame {
+  min-width: 0;
+  min-height: 0;
+}
+
+.beamer-footline {
+  position: fixed !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100vw;
+  min-width: 0;
+  z-index: 100;
+}
+
+/* Slides 4 and 5 are the densest landscape pages. Reclaim height from the
+   drawings, not the explanatory text, on common laptop/projector screens. */
+@media (min-width: 1000px) and (max-height: 820px) {
+  .levy-example-slide .family-cloud-canvas,
+  .product-example-slide .family-cloud-canvas {
+    height: clamp(350px, 45vh, 380px) !important;
+  }
+}
+
+/* On narrow phones, dedicate the complete footer to the date and page number
+   so the counter cannot be squeezed or clipped by the other two labels. */
+@media (max-width: 520px) {
+  .beamer-footline {
+    grid-template-columns: 1fr;
+    height: 26px;
+    font-size: 11px;
+  }
+
+  .beamer-footline-author,
+  .beamer-footline-title {
+    display: none !important;
+  }
+
+  .beamer-footline-date {
+    grid-column: 1;
+    justify-content: center;
+    padding: 0 8px;
+  }
 }
