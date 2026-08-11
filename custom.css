@@ -158,13 +158,9 @@ html .slide[data-slide].slide .slide-header h1 {
   font-size: clamp(32px, 2.4vw, 39px) !important;
 }
 
-.alpha-readout::before {
-  content: "帢??= ";
-}
+.alpha-readout::before {\n  content: "\\03B1\\2093 = ";\n}
 
-.family-alpha-badge::before {
-  content: "帢?? = ";
-}
+.family-alpha-badge::before {\n  content: "\\03B1\\2093\\2099 = ";\n}
 
 .product-mass-badge::before {
   content: none !important;
