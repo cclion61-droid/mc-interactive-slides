@@ -5,15 +5,18 @@
   const previousButton = document.querySelector("#previousSlide");
   const nextButton = document.querySelector("#nextSlide");
   const initialSlide = Number.parseInt(window.location.hash.slice(1), 10) - 1;
+  const firstReportPage = 4;
+  const reportTotalPages = 15;
   let current = Number.isInteger(initialSlide) && initialSlide >= 0 ? initialSlide : 0;
 
   slides.forEach((slide, index) => {
+    const reportPage = firstReportPage + index;
     const oldCounter = slide.querySelector(".slide-count");
     if (oldCounter) oldCounter.setAttribute("aria-hidden", "true");
     if (slide.querySelector(".beamer-footline")) return;
     const footline = document.createElement("footer");
     footline.className = "beamer-footline";
-    footline.setAttribute("aria-label", `Group 5, Measure Concentration, slide ${index + 1} of ${slides.length}`);
+    footline.setAttribute("aria-label", `Group 5, Measure Concentration, page ${reportPage} of ${reportTotalPages}`);
     const author = document.createElement("span");
     author.className = "beamer-footline-author";
     author.textContent = "Group 5";
@@ -22,7 +25,7 @@
     title.textContent = "Measure Concentration";
     const date = document.createElement("span");
     date.className = "beamer-footline-date";
-    date.textContent = `August 13, 2026   ${index + 1} / ${slides.length}`;
+    date.textContent = `August 13, 2026   ${reportPage} / ${reportTotalPages}`;
     footline.append(author, title, date);
     slide.querySelector(".slide-frame")?.append(footline);
   });
