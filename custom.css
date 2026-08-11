@@ -897,3 +897,19 @@ html .slide[data-slide].slide .slide-header h1 {
     padding: 0 8px;
   }
 }
+
+
+/* Slide 6 book citation in the title area. */
+.slide[data-slide="6"] .related-work-book {
+  margin: 2px 0 0;
+  color: #4c4c65;
+  font-size: clamp(20px, 1.55vw, 25px);
+  line-height: 1.2 !important;
+  white-space: nowrap;
+}
+
+.slide[data-slide="6"] .chapter-note {
+  color: #4c4c65;
+  font-size: 0.76em;
+  font-weight: 500;
+}
