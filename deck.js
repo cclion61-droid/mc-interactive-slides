@@ -2580,7 +2580,7 @@
       context.textBaseline = "top";
       context.fillText("DRAG TO ROTATE", width - 8, 7);
       const projectionFontSize = Math.max(14, Math.min(17, width * 0.022));
-      drawSigmaProjectionLabel(context, 8, height - 5, "n", projectionFontSize, "#60717a");
+      drawSigmaProjectionLabel(context, 8, height - 5, "2", projectionFontSize, "#60717a");
     }
 
     function render() {
@@ -2952,7 +2952,7 @@
       context.textBaseline = "top";
       context.fillText("DRAG TO ROTATE", width - 8, 7);
       const projectionFontSize = Math.max(14, Math.min(17, width * 0.022));
-      drawSigmaProjectionLabel(context, 8, height - 5, "n", projectionFontSize, "#60717a");
+      drawSigmaProjectionLabel(context, 8, height - 5, "2", projectionFontSize, "#60717a");
     }
 
     function render() {
